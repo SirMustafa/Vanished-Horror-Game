@@ -8,6 +8,7 @@ public class Inputs : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
+    public event Action OnLeftMouseEvent;
     public event Action<bool> OnAimingEvent;
     public event Action<bool> OnSprintEvent;
 
@@ -34,6 +35,13 @@ public class Inputs : MonoBehaviour
         else if (context.canceled)
         {
             OnAimingEvent?.Invoke(false);
+        }
+    }
+    public void OnLeftMouse(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnLeftMouseEvent.Invoke();
         }
     }
 

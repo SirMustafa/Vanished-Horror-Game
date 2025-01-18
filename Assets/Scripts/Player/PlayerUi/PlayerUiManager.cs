@@ -18,10 +18,19 @@ public class PlayerUiManager : MonoBehaviour
     {
         panelsCount = Enum.GetValues(typeof(UiPanels)).Length;
     }
-    
+
+    public void CheckLeftMouseInput()
+    {
+        if(CurrentPanel == UiPanels.SubtitlePanel)
+        {
+
+        }
+    }
+
     public void SetCurrentPanel(UiPanels whichPanelisActive)
     {
         CurrentPanel = whichPanelisActive;
+
         for (int i = 0; i < panelsCount; i++)
         {
 

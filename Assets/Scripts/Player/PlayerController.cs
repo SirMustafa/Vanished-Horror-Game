@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAiming(bool isAiming)
     {
-        _animator.SetBool("isAiming", isAiming);
         aimingCamera.SetActive(isAiming);
         _mouseLookCs.SetSensitivity(isAiming);
     }
