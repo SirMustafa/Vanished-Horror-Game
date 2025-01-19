@@ -8,6 +8,7 @@ public class Inputs : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
+    public event Action OnInteractEven;
     public event Action OnLeftMouseEvent;
     public event Action<bool> OnAimingEvent;
     public event Action<bool> OnSprintEvent;
@@ -23,6 +24,13 @@ public class Inputs : MonoBehaviour
         if (context.performed)
         {
             OnJumpEvent?.Invoke();
+        }
+    }
+    public void OnInterract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnInteractEven?.Invoke();
         }
     }
 

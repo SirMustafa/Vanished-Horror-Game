@@ -5,5 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="Line")]
 public class SubtitlesSO : ScriptableObject
 {
+    public Sprite narratorsSprite;
     public string[] lines;
 }

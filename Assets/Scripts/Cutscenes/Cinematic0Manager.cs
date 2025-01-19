@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Cinematic0Manager : MonoBehaviour
 {
-    [SerializeField] SubtitlesSO cinematicLines;
-    [SerializeField] PlayerUiManager playerUi;
+    [SerializeField] PlayerUiManager playerUi; 
     [SerializeField] Inputs gameInputs;
-    void Start()
+
+    public void ActivateSubtitlePanel()
     {
         playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.SubtitlePanel);
     }

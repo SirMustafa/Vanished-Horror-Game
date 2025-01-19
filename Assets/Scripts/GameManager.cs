@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-	
+    private void Start()
+    {
+        ChangeGameState(GameState.PlayTime);
+    }
     public enum GameState
 	{
 		PlayTime,

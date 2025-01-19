@@ -17,9 +17,6 @@ public class MouseLook : MonoBehaviour
     private void Awake()
     {
         _currentSensitivity = _mouseSensitivity;
-
-        //daha sonra lockstate gamemanager a taþýncak
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

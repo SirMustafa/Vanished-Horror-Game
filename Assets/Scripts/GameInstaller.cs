@@ -7,8 +7,9 @@ public class GameInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
+        Container.Bind<Inputs>().FromComponentInHierarchy().AsSingle();
         Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
         Container.Bind<PlayerController>().FromComponentInHierarchy().AsSingle();
-        Container.Bind<Inputs>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<PlayerUiManager>().FromComponentInHierarchy().AsSingle();  
     }
 }

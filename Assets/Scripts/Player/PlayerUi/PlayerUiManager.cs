@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> Panels;
-
+    [SerializeField] SubtitlesSO[] subtitles;
+    [SerializeField] SubtitleManager _subtitle;
+    [SerializeField] GameObject _interractSymbol;
+    [SerializeField] GameObject _corshair;
     Inputs _gameInputs;
-    SubtitleManager _subtitle;
     int _panelsCount;
+    int subtitleCount = 0;
 
     public enum UiPanels
     {
@@ -21,10 +25,9 @@ public class PlayerUiManager : MonoBehaviour
     public UiPanels CurrentPanel;
 
     [Inject]
-    void InjectDependencies(Inputs inputs, SubtitleManager sub)
+    void InjectDependencies(Inputs inputs)
     {
         _gameInputs = inputs;
-        _subtitle = sub;
         _gameInputs.OnLeftMouseEvent += CheckLeftMouseInput;
     }
 
@@ -37,8 +40,14 @@ public class PlayerUiManager : MonoBehaviour
     {
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {
-            _subtitle.SetDialouge();
+            _subtitle.CallNextLine();
         }
+    }
+
+    public void ShowInteractSymbol(bool isInterracting)
+    {
+        _interractSymbol.SetActive(isInterracting);
+        _corshair.SetActive(!isInterracting);
     }
 
     public void SetCurrentPanel(UiPanels whichPanelisActive)
@@ -48,6 +57,11 @@ public class PlayerUiManager : MonoBehaviour
         for (int i = 0; i < _panelsCount; i++)
         {
             Panels[i].SetActive(i == (int)whichPanelisActive);
+        }
+        if (CurrentPanel == UiPanels.SubtitlePanel)
+        {
+            _subtitle.SetAndStart(subtitles[subtitleCount]);
+            subtitleCount++;
         }
     }
 }
