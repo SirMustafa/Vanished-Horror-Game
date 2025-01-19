@@ -5,44 +5,42 @@ using UnityEngine;
 
 public class SubtitleManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI subtitleTxt;
-    [SerializeField] string[] lines;
+    [SerializeField] TextMeshProUGUI _subtitleTxt;
     [SerializeField] float textSpeed;
-    int index;
 
-    private void Awake()
-    {
-        //_inputs.OnMoveEvent += HandleMovement;
-    }
-    private void Start()
-    {
-        subtitleTxt.text = "";
-    }
+    SubtitlesSO _currentLine;
+    int _index;
 
-    private void SetDialouge()
+    private void OnEnable()
     {
-        if (subtitleTxt.text == lines[index])
+        //StartDialouge();
+    }
+    public void SetDialouge()
+    {
+        if (_subtitleTxt.text == _currentLine.lines[_index])
         {
             NextLine();
         }
         else
         {
             StopAllCoroutines();
-            subtitleTxt.text = lines[index];
+            _subtitleTxt.text = _currentLine.lines[_index];
         }
     }
 
-    public void StartDialouge()
+    public void StartDialouge(SubtitlesSO myLines)
     {
-        index = 0;
+        _index = 0;
+        _subtitleTxt.text = "";
+        _currentLine = myLines;
         StartCoroutine(TypeLine());
     }
-    public void NextLine()
+    void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (_index < _currentLine.lines.Length - 1)
         {
-            index++;
-            subtitleTxt.text = "";
+            _index++;
+            _subtitleTxt.text = "";
             StartCoroutine(TypeLine());
         }
         else
@@ -53,9 +51,9 @@ public class SubtitleManager : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in _currentLine.lines[_index].ToCharArray())
         {
-            subtitleTxt.text += c;
+            _subtitleTxt.text += c;
         }
         yield return new WaitForSeconds(textSpeed);
     }

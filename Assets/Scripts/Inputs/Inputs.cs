@@ -41,7 +41,7 @@ public class Inputs : MonoBehaviour
     {
         if (context.performed)
         {
-            OnLeftMouseEvent.Invoke();
+            OnLeftMouseEvent?.Invoke();
         }
     }
 

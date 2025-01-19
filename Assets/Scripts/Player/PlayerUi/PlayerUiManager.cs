@@ -2,10 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
 {
-    int panelsCount;
+    [SerializeField] List<GameObject> Panels;
+
+    Inputs _gameInputs;
+    SubtitleManager _subtitle;
+    int _panelsCount;
+
     public enum UiPanels
     {
         GamePlayPanel,
@@ -14,16 +20,24 @@ public class PlayerUiManager : MonoBehaviour
     }
     public UiPanels CurrentPanel;
 
+    [Inject]
+    void InjectDependencies(Inputs inputs, SubtitleManager sub)
+    {
+        _gameInputs = inputs;
+        _subtitle = sub;
+        _gameInputs.OnLeftMouseEvent += CheckLeftMouseInput;
+    }
+
     private void Start()
     {
-        panelsCount = Enum.GetValues(typeof(UiPanels)).Length;
+        _panelsCount = Panels.Count;
     }
 
     public void CheckLeftMouseInput()
     {
-        if(CurrentPanel == UiPanels.SubtitlePanel)
+        if (CurrentPanel == UiPanels.SubtitlePanel)
         {
-
+            _subtitle.SetDialouge();
         }
     }
 
@@ -31,9 +45,9 @@ public class PlayerUiManager : MonoBehaviour
     {
         CurrentPanel = whichPanelisActive;
 
-        for (int i = 0; i < panelsCount; i++)
+        for (int i = 0; i < _panelsCount; i++)
         {
-
+            Panels[i].SetActive(i == (int)whichPanelisActive);
         }
     }
 }

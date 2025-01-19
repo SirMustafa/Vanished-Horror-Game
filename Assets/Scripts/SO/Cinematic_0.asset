@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d601ac414dfb64a4b87f61ce92324366, type: 3}
+  m_Name: Cinematic_0
+  m_EditorClassIdentifier: 
+  lines:
+  - "I\u2019ve been traveling aboard this ship for 20 years. Heading toward the edge
+    of the universe. I was chosen for this mission\u2014to reach where no one has
+    gone before."
+  - "In the early years, there was hope. But now... there\u2019s only silence. Nothing
+    should ever feel this... empty."
+  - "But there\u2019s something here. I can feel it. And if this message reaches
+    anyone... know that..."
