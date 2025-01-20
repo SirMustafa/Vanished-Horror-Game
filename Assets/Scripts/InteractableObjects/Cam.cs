@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Zenject;
 
-public class Cam : MonoBehaviour
+public class Cam : MonoBehaviour,IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject virtualCamera;
+    private Inputs _inputs;
+    private PlayerUiManager _playerUi;
+
+    [Inject]
+    void InjectDependencies(PlayerUiManager playerUi, Inputs inputs)
     {
-        
+        _inputs = inputs;
+        _playerUi = playerUi;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MyInterract()
     {
-        
+        _inputs.SwitchActionMap(Inputs.ActionMap.OnCamera);
+        _playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.OnCameraPanel);
+        virtualCamera.SetActive(true);
+    }
+    public void OnExit(InputAction.CallbackContext context)
+    {
+        _inputs.SwitchActionMap(Inputs.ActionMap.Player);
+        _playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.GamePlayPanel);
+        virtualCamera.SetActive(false);
     }
 }

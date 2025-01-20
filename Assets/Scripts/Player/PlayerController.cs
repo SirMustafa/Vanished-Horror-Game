@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _verticalVelocity;
     private float _currentSpeed;
     private bool _isGrounded;
-
+    private bool _isSitting = false;
     private static readonly int _VelocityXHash = Animator.StringToHash("VelocityX");
     private static readonly int _VelocityZHash = Animator.StringToHash("VelocityZ");
 
@@ -48,9 +48,32 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = transform.TransformDirection(_movementInput) * _currentSpeed;
         movement.y = _verticalVelocity.y;
-
         _characterController.Move(movement * Time.deltaTime);
+
         UpdateAnimatorParameters();
+    }
+
+    public void SitChair(Vector3 chairPosition)
+    {
+        if (!_isSitting)
+        {
+            _isSitting = true;
+            StartCoroutine(MoveToChair(chairPosition));
+        }
+    }
+
+    private IEnumerator MoveToChair(Vector3 chairPosition)
+    {
+        while (Vector3.Distance(transform.position, chairPosition) > 0.1f)
+        {
+            Vector3 direction = (chairPosition - transform.position).normalized;
+            Vector3 movement = direction * _currentSpeed * Time.deltaTime;
+            _characterController.Move(movement);
+            yield return null;
+        }
+        _isSitting = false;
+        _movementInput = Vector3.zero;
+        _animator.SetBool("isSitting",true);
     }
 
     private void HandleMovement(Vector2 input)

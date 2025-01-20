@@ -46,6 +46,10 @@ public class Cinematic0Player : MonoBehaviour
         bool currentState = _animator.GetBool("isWorking");
         _animator.SetBool("isWorking", !currentState);
     }
+    public void SitChair()
+    {
+        _animator.SetBool("isSitting", true);
+    }
 
     private void UpdateAnimatorParameters()
     {

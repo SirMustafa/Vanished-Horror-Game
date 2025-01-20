@@ -20,7 +20,8 @@ public class PlayerUiManager : MonoBehaviour
     {
         GamePlayPanel,
         PausePanel,
-        SubtitlePanel
+        SubtitlePanel,
+        OnCameraPanel
     }
     public UiPanels CurrentPanel;
 
@@ -36,7 +37,7 @@ public class PlayerUiManager : MonoBehaviour
         _panelsCount = Panels.Count;
     }
 
-    public void CheckLeftMouseInput()
+    private void CheckLeftMouseInput()
     {
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {

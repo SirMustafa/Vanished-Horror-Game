@@ -12,6 +12,18 @@ public class Inputs : MonoBehaviour
     public event Action OnLeftMouseEvent;
     public event Action<bool> OnAimingEvent;
     public event Action<bool> OnSprintEvent;
+    [SerializeField] private PlayerInput playerInput;
+    public enum ActionMap
+    {
+        Player,
+        OnChair,
+        OnCamera
+    }
+
+    public void SwitchActionMap(ActionMap actionMap)
+    {
+        playerInput.SwitchCurrentActionMap(actionMap.ToString());
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {

@@ -24,7 +24,7 @@ public class InteractionHandler : MonoBehaviour
     {
         CheckForInteractable();
     }
-    public void CheckForInteractable()
+    private void CheckForInteractable()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         bool hasHit = Physics.Raycast(ray, out RaycastHit hit, interactionRange, interactableLayer);
@@ -45,7 +45,7 @@ public class InteractionHandler : MonoBehaviour
         }
     }
 
-    void Interact()
+    private void Interact()
     {
         _currentInteractable?.MyInterract();
     }
