@@ -308,6 +308,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "OnPause",
+            "id": "ab327eae-b182-4a78-b421-51246183b5c1",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "e3b4825a-8d0d-45db-a339-b036b16da262",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c0191df0-724e-4466-8536-e38b88f8141e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

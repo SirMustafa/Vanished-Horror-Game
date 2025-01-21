@@ -5,8 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    public void LoadScene(int whichLevel)
+    public static SceneTransition Sceneinstance;
+    [SerializeField] private Animator animator;
+
+    private void Awake()
     {
-        SceneManager.LoadScene(whichLevel);
+        if (Sceneinstance != null && Sceneinstance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Sceneinstance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void NextLevel(int whichLevel)
+    {
+        StartCoroutine(scenetransition(whichLevel));
+    }
+    IEnumerator scenetransition(int loadlvl)
+    {
+        animator.SetTrigger("End");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(loadlvl);
+        animator.SetTrigger("Start");
     }
 }

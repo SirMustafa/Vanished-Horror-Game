@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +10,10 @@ public class SubtitleManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _subtitleTxt;
     [SerializeField] float textSpeed;
     [SerializeField] Image _imageComponent;
+    [SerializeField] AudioSource mySource;
 
+    public event Action OnDialogueFinished;
+    AudioClip narratorsAudio;
     SubtitlesSO _currentLine;
     int _index;
 
@@ -38,6 +42,7 @@ public class SubtitleManager : MonoBehaviour
     {
         _index = 0;
         _subtitleTxt.text = "";
+        mySource.PlayOneShot(myLines.narratorsClip);
         StartCoroutine(TypeLine());
     }
     void NextLine()
@@ -50,7 +55,7 @@ public class SubtitleManager : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            OnDialogueFinished?.Invoke();
         }
     }
 
@@ -60,6 +65,8 @@ public class SubtitleManager : MonoBehaviour
         {
             _subtitleTxt.text += c;
             yield return new WaitForSeconds(textSpeed);
-        } 
+        }
+        yield return new WaitUntil(() => !mySource.isPlaying);
+        NextLine();
     }
 }

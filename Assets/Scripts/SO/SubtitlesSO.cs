@@ -6,5 +6,6 @@ using UnityEngine;
 public class SubtitlesSO : ScriptableObject
 {
     public Sprite narratorsSprite;
+    public AudioClip narratorsClip;
     public string[] lines;
 }

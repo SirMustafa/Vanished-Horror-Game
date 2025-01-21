@@ -34,6 +34,7 @@ public class PlayerUiManager : MonoBehaviour
 
     private void Start()
     {
+        _subtitle.OnDialogueFinished += EndDialouge;
         _panelsCount = Panels.Count;
     }
 
@@ -49,6 +50,10 @@ public class PlayerUiManager : MonoBehaviour
     {
         _interractSymbol.SetActive(isInterracting);
         _corshair.SetActive(!isInterracting);
+    }
+    void EndDialouge()
+    {
+        SetCurrentPanel(UiPanels.GamePlayPanel);
     }
 
     public void SetCurrentPanel(UiPanels whichPanelisActive)
