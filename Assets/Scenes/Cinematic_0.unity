@@ -13248,6 +13248,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5054117967499444617, guid: 61dfbb2a1f52a6f4d844e9aa5c6e2f4b, type: 3}
+      propertyPath: _subtitleManager
+      value: 
+      objectReference: {fileID: 5400656702706351494}
+    - target: {fileID: 5054117967499444617, guid: 61dfbb2a1f52a6f4d844e9aa5c6e2f4b, type: 3}
+      propertyPath: _subtitles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5054117967499444617, guid: 61dfbb2a1f52a6f4d844e9aa5c6e2f4b, type: 3}
+      propertyPath: '_subtitles.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fa2f676ca3867fa4cad179ed2f57ef37, type: 2}
+    - target: {fileID: 5054117967499444617, guid: 61dfbb2a1f52a6f4d844e9aa5c6e2f4b, type: 3}
+      propertyPath: '_subtitles.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b386e38a51043964c99632df1c923a86, type: 2}
     - target: {fileID: 6981810044642037313, guid: 61dfbb2a1f52a6f4d844e9aa5c6e2f4b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

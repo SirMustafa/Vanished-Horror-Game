@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         TabState,
         CinematicState,
         PauseState,
+        OnCameraState
     }
     public GameState CurrentGameState { get; private set; }
     private PlayerUiManager playerUi;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.SubtitleState:
-                playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.SubtitlePanel);
+
                 break;
             case GameState.PlayState:
                 Cursor.lockState = CursorLockMode.Locked;

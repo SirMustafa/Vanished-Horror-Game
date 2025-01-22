@@ -24,7 +24,8 @@ public class PlayerUiManager : MonoBehaviour
         SubtitlePanel,
         TabPanel,
         CinematicPanel,
-        PausePanel,      
+        PausePanel,   
+        OnCameraPanel
     }
     public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
 
@@ -60,18 +61,6 @@ public class PlayerUiManager : MonoBehaviour
         SetCurrentPanel(UiPanels.GamePlayPanel);
     }
 
-    public void TogglePause()
-    {
-        if (CurrentPanel == UiPanels.PausePanel)
-        {
-            SetCurrentPanel(UiPanels.GamePlayPanel);
-        }
-        else
-        {
-            SetCurrentPanel(UiPanels.PausePanel);
-        }
-    }
-
     public void SetCurrentPanel(UiPanels whichPanelisActive)
     {
         CurrentPanel = whichPanelisActive;
@@ -83,10 +72,25 @@ public class PlayerUiManager : MonoBehaviour
 
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {
-            Debug.Log(subtitleCount);
-            Debug.Log(CurrentPanel);
             _subtitleManager.SetAndStart(_subtitles[subtitleCount]);
             subtitleCount++;
         }
+    }
+
+    public void RestartGame()
+    {
+
+    }
+    public void ResumeGame()
+    {
+
+    }
+    public void MainMenu()
+    {
+        
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -8,25 +8,25 @@ public class Cam : MonoBehaviour,IInteractable
 {
     [SerializeField] GameObject virtualCamera;
     private Inputs _inputs;
-    private PlayerUiManager _playerUi;
+    private GameManager _gameManager;
 
     [Inject]
-    void InjectDependencies(PlayerUiManager playerUi, Inputs inputs)
+    void InjectDependencies(GameManager gamemanager, Inputs inputs)
     {
         _inputs = inputs;
-        _playerUi = playerUi;
+        _gameManager = gamemanager;
     }
 
     public void MyInterract()
     {
         _inputs.SwitchActionMap(Inputs.ActionMap.OnCamera);
-        _playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.None);
+        _gameManager.ChangeGameState(GameManager.GameState.OnCameraState);
         virtualCamera.SetActive(true);
     }
     public void OnExit(InputAction.CallbackContext context)
     {
         _inputs.SwitchActionMap(Inputs.ActionMap.Player);
-        _playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.GamePlayPanel);
+        _gameManager.ChangeGameState(GameManager.GameState.PlayState);
         virtualCamera.SetActive(false);
     }
 }

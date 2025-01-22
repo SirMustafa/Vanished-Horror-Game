@@ -55,8 +55,14 @@ public class SubtitleManager : MonoBehaviour
         }
         else
         {
-            OnDialogueFinished?.Invoke();
+            StartCoroutine(WaitSpeech());
         }
+    }
+
+    IEnumerator WaitSpeech()
+    {
+        yield return new WaitUntil(() => !mySource.isPlaying);
+        OnDialogueFinished?.Invoke();
     }
 
     IEnumerator TypeLine()
@@ -65,8 +71,7 @@ public class SubtitleManager : MonoBehaviour
         {
             _subtitleTxt.text += c;
             yield return new WaitForSeconds(textSpeed);
-        }
-        yield return new WaitUntil(() => !mySource.isPlaying);
+        }   
         NextLine();
     }
 }
