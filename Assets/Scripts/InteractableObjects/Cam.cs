@@ -20,7 +20,7 @@ public class Cam : MonoBehaviour,IInteractable
     public void MyInterract()
     {
         _inputs.SwitchActionMap(Inputs.ActionMap.OnCamera);
-        _playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.OnCameraPanel);
+        _playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.None);
         virtualCamera.SetActive(true);
     }
     public void OnExit(InputAction.CallbackContext context)

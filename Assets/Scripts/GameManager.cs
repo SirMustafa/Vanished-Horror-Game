@@ -5,15 +5,16 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
-    int index = 0;
     public enum GameState
     {
-        Subtitle,
-        PlayTime,
-        CinematicTime,
-        Pause
+        None,
+        PlayState,
+        SubtitleState,
+        TabState,
+        CinematicState,
+        PauseState,
     }
-    public GameState GameStates;
+    public GameState CurrentGameState { get; private set; }
     private PlayerUiManager playerUi;
 
     [Inject]
@@ -29,44 +30,46 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        StartCoroutine(waiter(2));
-        
+        ChangeGameState(GameState.PlayState);
+        StartCoroutine(waiter(1));    
     }
 
     IEnumerator waiter(float howMuchTime)
     {
         yield return new WaitForSeconds(howMuchTime);
-        StartTask(GameState.Subtitle);
+        ChangeGameState(GameState.SubtitleState);
     }
 
-    public void StartTask(GameState whichState)
+    public void ChangeGameState(GameState newState)
     {
-        switch (GameStates)
+        CurrentGameState = newState;
+        playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
+
+        switch (newState)
         {
-            case GameState.Subtitle:
+            case GameState.SubtitleState:
                 playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.SubtitlePanel);
                 break;
-
-            case GameState.PlayTime:
+            case GameState.PlayState:
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 break;
-
-            case GameState.CinematicTime:
-                break;
-
-            case GameState.Pause:
-                break;
-
-            default:
+            case GameState.PauseState:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
         }
     }
 
-    public void ChangeGameState(GameState whichState)
-	{
-		if(whichState == GameState.PlayTime)
-		{
-            Cursor.lockState = CursorLockMode.Locked;
+    public void PauseGame()
+    {
+        if (CurrentGameState == GameState.PauseState)
+        {
+            ChangeGameState(GameState.PlayState);
         }
-	}  
+        else
+        {
+            ChangeGameState(GameState.PauseState);
+        }
+    }
 }

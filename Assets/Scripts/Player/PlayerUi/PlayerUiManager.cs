@@ -8,22 +8,25 @@ using Zenject;
 public class PlayerUiManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> Panels;
-    [SerializeField] SubtitlesSO[] subtitles;
-    [SerializeField] SubtitleManager _subtitle;
+    [SerializeField] SubtitlesSO[] _subtitles;
+    [SerializeField] SubtitleManager _subtitleManager;
     [SerializeField] GameObject _interractSymbol;
     [SerializeField] GameObject _corshair;
+
     Inputs _gameInputs;
     int _panelsCount;
     int subtitleCount = 0;
 
     public enum UiPanels
     {
+        None,
         GamePlayPanel,
-        PausePanel,
         SubtitlePanel,
-        OnCameraPanel
+        TabPanel,
+        CinematicPanel,
+        PausePanel,      
     }
-    public UiPanels CurrentPanel;
+    public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
 
     [Inject]
     void InjectDependencies(Inputs inputs)
@@ -34,7 +37,7 @@ public class PlayerUiManager : MonoBehaviour
 
     private void Start()
     {
-        _subtitle.OnDialogueFinished += EndDialouge;
+        _subtitleManager.OnDialogueFinished += EndDialouge;
         _panelsCount = Panels.Count;
     }
 
@@ -42,7 +45,7 @@ public class PlayerUiManager : MonoBehaviour
     {
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {
-            _subtitle.CallNextLine();
+            _subtitleManager.CallNextLine();
         }
     }
 
@@ -51,9 +54,22 @@ public class PlayerUiManager : MonoBehaviour
         _interractSymbol.SetActive(isInterracting);
         _corshair.SetActive(!isInterracting);
     }
+
     void EndDialouge()
     {
         SetCurrentPanel(UiPanels.GamePlayPanel);
+    }
+
+    public void TogglePause()
+    {
+        if (CurrentPanel == UiPanels.PausePanel)
+        {
+            SetCurrentPanel(UiPanels.GamePlayPanel);
+        }
+        else
+        {
+            SetCurrentPanel(UiPanels.PausePanel);
+        }
     }
 
     public void SetCurrentPanel(UiPanels whichPanelisActive)
@@ -64,9 +80,12 @@ public class PlayerUiManager : MonoBehaviour
         {
             Panels[i].SetActive(i == (int)whichPanelisActive);
         }
+
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {
-            _subtitle.SetAndStart(subtitles[subtitleCount]);
+            Debug.Log(subtitleCount);
+            Debug.Log(CurrentPanel);
+            _subtitleManager.SetAndStart(_subtitles[subtitleCount]);
             subtitleCount++;
         }
     }

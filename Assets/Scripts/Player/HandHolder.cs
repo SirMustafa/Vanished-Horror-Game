@@ -10,8 +10,4 @@ public class HandHolder : MonoBehaviour
         pickedObject.transform.localPosition = Vector3.zero;
         pickedObject.transform.localRotation = Quaternion.identity;
     }
-    public void SubscribeToPickable(IPickable pickable)
-    {
-        pickable.OnPickUpEvent.AddListener(AttachToHand);
-    }
 }

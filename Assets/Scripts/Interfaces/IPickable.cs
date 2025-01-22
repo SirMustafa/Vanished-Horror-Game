@@ -6,5 +6,5 @@ using UnityEngine.Events;
 
 public interface IPickable
 {
-    UnityEvent<GameObject> OnPickUpEvent { get; }
+    void PickMeUp();
 }

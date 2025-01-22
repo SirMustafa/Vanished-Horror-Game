@@ -6,10 +6,15 @@ using UnityEngine.Events;
 
 public class Cup : MonoBehaviour, IInteractable, IPickable
 {
-    public UnityEvent<GameObject> OnPickUpEvent { get; private set; } = new UnityEvent<GameObject>();
+    [SerializeField] private UnityEvent<GameObject> pickMeEvent;
 
     public void MyInterract()
     {
-        OnPickUpEvent.Invoke(gameObject);
+        PickMeUp();
+    }
+
+    public void PickMeUp()
+    {
+        pickMeEvent.Invoke(gameObject);
     }
 }

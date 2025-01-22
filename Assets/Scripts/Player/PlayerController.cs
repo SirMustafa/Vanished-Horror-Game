@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _gravity;
     [SerializeField] private float _jumpForce;
     [SerializeField] private GameObject aimingCamera;
+    [SerializeField] private HandHolder myRightHand;
     [SerializeField] private MouseLook _mouseLookCs;
     [SerializeField] private Inputs _inputs;
 
@@ -99,6 +100,18 @@ public class PlayerController : MonoBehaviour
     private void HandleSprint(bool isSprinting)
     {
         _currentSpeed = isSprinting ? _runSpeed : _walkSpeed;
+    }
+
+    public void HandlePickAnimation(GameObject whichObject)
+    {
+        _animator.SetBool("isPickingUp",true);
+        StartCoroutine(CallHandHolder(whichObject));
+    }
+
+    IEnumerator CallHandHolder(GameObject myObject)
+    {
+        yield return new WaitForSeconds(0.5f);
+        myRightHand.AttachToHand(myObject);
     }
 
     private void UpdateAnimatorParameters()

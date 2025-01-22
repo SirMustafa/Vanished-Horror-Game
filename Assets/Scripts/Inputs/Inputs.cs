@@ -2,17 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Inputs : MonoBehaviour
 {
+    public UnityEvent OnEscBtn;
     public event Action<Vector2> OnMoveEvent;
     public event Action OnJumpEvent;
-    public event Action OnInteractEven;
+    public event Action OnInteractEven; 
     public event Action OnLeftMouseEvent;
     public event Action<bool> OnAimingEvent;
     public event Action<bool> OnSprintEvent;
     [SerializeField] private PlayerInput playerInput;
+
+    bool isGamePaused = false;
     public enum ActionMap
     {
         Player,
@@ -63,6 +67,16 @@ public class Inputs : MonoBehaviour
         {
             OnLeftMouseEvent?.Invoke();
         }
+    }
+
+    public void OnEscButton(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        isGamePaused = !isGamePaused;
+        OnEscBtn?.Invoke();
+
+        playerInput.SwitchCurrentActionMap(isGamePaused ? "OnPause" : "Player");
     }
 
     public void OnSprint(InputAction.CallbackContext context)
