@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d601ac414dfb64a4b87f61ce92324366, type: 3}
+  m_Name: InGame_1
+  m_EditorClassIdentifier: 
+  narratorsSprite: {fileID: 21300000, guid: d192d7a613213c848b37bd54eb881678, type: 3}
+  narratorsClip: {fileID: 8300000, guid: f1ef6fc1889df9740a8465b4d60f8ded, type: 3}
+  lines:
+  - Open a door, Captain

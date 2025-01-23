@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,13 +16,16 @@ public class GameManager : MonoBehaviour
         PauseState,
         OnCameraState
     }
+
     public GameState CurrentGameState { get; private set; }
-    private PlayerUiManager playerUi;
+    private PlayerUiManager _playerUi;
+    private QuestManager _taskManager;
 
     [Inject]
-    void InjectDependencies(PlayerUiManager playerUiManager)
+    void InjectDependencies(PlayerUiManager playerUiManager, QuestManager taskmanager)
     {
-        playerUi = playerUiManager;
+        _playerUi = playerUiManager;
+        _taskManager = taskmanager;
     }
 
     private void Awake()
@@ -32,29 +36,31 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ChangeGameState(GameState.PlayState);
-        StartCoroutine(waiter(1));    
+        StartCoroutine(waiter());    
     }
 
-    IEnumerator waiter(float howMuchTime)
+    IEnumerator waiter()
     {
-        yield return new WaitForSeconds(howMuchTime);
-        ChangeGameState(GameState.SubtitleState);
+        yield return new WaitForSeconds(1);
+        _taskManager.Initialize();
     }
 
     public void ChangeGameState(GameState newState)
     {
         CurrentGameState = newState;
-        playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
+        _playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
 
         switch (newState)
         {
             case GameState.SubtitleState:
 
                 break;
+
             case GameState.PlayState:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;
+
             case GameState.PauseState:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
