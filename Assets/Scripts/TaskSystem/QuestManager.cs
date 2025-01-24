@@ -14,17 +14,17 @@ public class QuestManager : MonoBehaviour
 
     private void StartTask(int index)
     {
-        QuestInfoSO currentTask = tasks[index];
-
-        if (currentTask.subtitles != null)
-        {
-            
-        }
-        currentTask.OnTaskCompleted += () =>
-        {
-            Debug.Log("TaskFinished");
-            StartNextTask();
-        };
+       // QuestInfoSO currentTask = tasks[index];
+       //
+       // if (currentTask.subtitles != null)
+       // {
+       //     
+       // }
+       // currentTask.OnTaskCompleted += () =>
+       // {
+       //     Debug.Log("TaskFinished");
+       //     StartNextTask();
+       // };
     }
 
     private void StartNextTask()

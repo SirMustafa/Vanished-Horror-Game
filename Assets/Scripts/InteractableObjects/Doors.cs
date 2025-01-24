@@ -20,7 +20,7 @@ public class Doors : MonoBehaviour, IInteractable
         {
             _isOpen = true;
             transform.DORotate(transform.eulerAngles + new Vector3(0, 90, 0), _rotationDuration);
-            doorTask.CompleteTask();
+           // doorTask.CompleteTask();
         }
     }
 }
