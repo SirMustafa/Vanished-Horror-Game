@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceeef5c9d660803499db172659417a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationDuration: 0.5
+  doorTask: {fileID: 11400000, guid: cce29eb5ad2a5164cb7893fa3db0e86e, type: 2}

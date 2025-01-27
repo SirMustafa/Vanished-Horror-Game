@@ -8,11 +8,12 @@ using UnityEngine.UI;
 public class SubtitleManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _subtitleTxt;
+    [SerializeField] TextMeshProUGUI _missionTxt;
     [SerializeField] float textSpeed;
     [SerializeField] Image _imageComponent;
     [SerializeField] AudioSource mySource;
 
-    public event Action OnDialogueFinished;
+   //public event Action OnSubtitleFinished;
     AudioClip narratorsAudio;
     SubtitlesSO _currentLine;
     int _index;
@@ -36,6 +37,10 @@ public class SubtitleManager : MonoBehaviour
         _currentLine = myLines;
         _imageComponent.sprite = myLines.narratorsSprite;
         StartDialouge(myLines);
+    }
+    public void SetMissionText(string shortDescription)
+    {
+        _missionTxt.text = shortDescription;
     }
 
     void StartDialouge(SubtitlesSO myLines)
@@ -62,7 +67,7 @@ public class SubtitleManager : MonoBehaviour
     IEnumerator WaitSpeech()
     {
         yield return new WaitUntil(() => !mySource.isPlaying);
-        OnDialogueFinished?.Invoke();
+        OnSubtitleFinished?.Invoke();
     }
 
     IEnumerator TypeLine()

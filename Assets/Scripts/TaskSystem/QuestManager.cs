@@ -1,50 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class QuestManager : MonoBehaviour
 {
-    [SerializeField] private List<QuestInfoSO> tasks = new List<QuestInfoSO>();   
+    [SerializeField] private List<QuestInfoSO> tasksQue = new List<QuestInfoSO>();
     private int _currentTaskIndex = 0;
+    private PlayerUiManager _playerUi;
 
-    public void Initialize()
+    [Inject]
+    void setup(PlayerUiManager playerui)
     {
-        StartTask(_currentTaskIndex);
+        _playerUi = playerui;
     }
 
-    private void StartTask(int index)
+    public void StartQuest()
     {
-       // QuestInfoSO currentTask = tasks[index];
-       //
-       // if (currentTask.subtitles != null)
-       // {
-       //     
-       // }
-       // currentTask.OnTaskCompleted += () =>
-       // {
-       //     Debug.Log("TaskFinished");
-       //     StartNextTask();
-       // };
-    }
-
-    private void StartNextTask()
-    {
-        if (_currentTaskIndex + 1 < tasks.Count)
+        if (_currentTaskIndex < tasksQue.Count)
         {
-            _currentTaskIndex++;
-            StartTask(_currentTaskIndex);
+            QuestInfoSO currentTask = tasksQue[_currentTaskIndex];
+            Debug.Log($"Görev Baþladý: {currentTask.TaskName}");
+
+            if (currentTask.subtitles != null)
+            {
+                _playerUi.ShowSubtitle(currentTask.subtitles);
+                _playerUi.SetMissionText(currentTask.TaskName);
+            }
+            currentTask.OnTaskCompleted += CompleteCurrentQuest;
         }
         else
         {
-            Debug.Log("All tasks completed!");
+            Debug.Log("Tüm görevler tamamlandý!");
         }
     }
 
-    public void CompleteCurrentTask()
+    private void CompleteCurrentQuest()
     {
-        if (_currentTaskIndex < tasks.Count)
+        _currentTaskIndex++;
+
+        if (_currentTaskIndex < tasksQue.Count)
         {
-            tasks[_currentTaskIndex].CompleteTask();
+            _playerUi.SetMissionText("No mission for now");
+            //StartQuest();
+        }
+        else
+        {
+            Debug.Log("Tüm görevler tamamlandý!");
         }
     }
 }

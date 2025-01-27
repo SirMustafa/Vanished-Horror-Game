@@ -6,6 +6,8 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] List<SubtitlesSO> _subtitles = new List<SubtitlesSO>();
+
     public enum GameState
     {
         None,
@@ -19,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public GameState CurrentGameState { get; private set; }
     private PlayerUiManager _playerUi;
-    private QuestManager _taskManager;
+    private QuestManager _taskManager;  
 
     [Inject]
     void InjectDependencies(PlayerUiManager playerUiManager, QuestManager taskmanager)
@@ -35,14 +37,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeGameState(GameState.PlayState);
-        StartCoroutine(waiter());    
+        ChangeGameState(GameState.SubtitleState);
+        PlayTutorial();
     }
 
-    IEnumerator waiter()
+    private void PlayTutorial()
     {
-        yield return new WaitForSeconds(1);
-        _taskManager.Initialize();
+        _playerUi.ShowSubtitle(_subtitles[0]);
+        //_playerUi.OnSubtitleFinished += OnTutorialFinished;
     }
 
     public void ChangeGameState(GameState newState)
@@ -52,10 +54,6 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
-            case GameState.SubtitleState:
-
-                break;
-
             case GameState.PlayState:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

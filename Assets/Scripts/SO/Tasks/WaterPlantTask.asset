@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cfa50633236676419efdf4efcc5eac9, type: 3}
-  m_Name: OpenDoorTask
+  m_Script: {fileID: 11500000, guid: 48b5f3912f26a814b9fe293e2f066afc, type: 3}
+  m_Name: WaterPlantTask
   m_EditorClassIdentifier: 
-  TaskName: Doors
-  TaskDescription: Open a Door
+  TaskName: Water the Plants
+  TaskDescription: 
   isCompleted: 0
+  subtitles: {fileID: 11400000, guid: 36dbedbfa801c9e42b1aad7ab3ba8c39, type: 2}

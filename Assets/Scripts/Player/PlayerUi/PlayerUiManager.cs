@@ -7,15 +7,15 @@ using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
 {
+    //public event Action OnDialogueFinished;
+
     [SerializeField] List<GameObject> Panels;
-    [SerializeField] SubtitlesSO[] _subtitles;
     [SerializeField] SubtitleManager _subtitleManager;
     [SerializeField] GameObject _interractSymbol;
     [SerializeField] GameObject _corshair;
-
+    
     Inputs _gameInputs;
     int _panelsCount;
-    int subtitleCount = 0;
 
     public enum UiPanels
     {
@@ -24,7 +24,7 @@ public class PlayerUiManager : MonoBehaviour
         SubtitlePanel,
         TabPanel,
         CinematicPanel,
-        PausePanel,   
+        PausePanel,
         OnCameraPanel
     }
     public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
@@ -38,7 +38,6 @@ public class PlayerUiManager : MonoBehaviour
 
     private void Start()
     {
-        _subtitleManager.OnDialogueFinished += EndDialouge;
         _panelsCount = Panels.Count;
     }
 
@@ -56,24 +55,24 @@ public class PlayerUiManager : MonoBehaviour
         _corshair.SetActive(!isInterracting);
     }
 
-    void EndDialouge()
+    public void ShowSubtitle(SubtitlesSO whichSubtitle)
     {
-        SetCurrentPanel(UiPanels.GamePlayPanel);
+        SetCurrentPanel(UiPanels.SubtitlePanel);
+        _subtitleManager.SetAndStart(whichSubtitle);
     }
-
+    public void SetMissionText(string text)
+    {
+        _subtitleManager.SetMissionText(text);
+    }
     public void SetCurrentPanel(UiPanels whichPanelisActive)
     {
+        if (CurrentPanel == whichPanelisActive) return;
+
         CurrentPanel = whichPanelisActive;
 
         for (int i = 0; i < _panelsCount; i++)
         {
             Panels[i].SetActive(i == (int)whichPanelisActive);
-        }
-
-        if (CurrentPanel == UiPanels.SubtitlePanel)
-        {
-            _subtitleManager.SetAndStart(_subtitles[subtitleCount]);
-            subtitleCount++;
         }
     }
 
@@ -87,7 +86,7 @@ public class PlayerUiManager : MonoBehaviour
     }
     public void MainMenu()
     {
-        
+
     }
     public void Quit()
     {
