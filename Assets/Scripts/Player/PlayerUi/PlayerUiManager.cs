@@ -7,7 +7,7 @@ using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
 {
-    //public event Action OnDialogueFinished;
+    public event Action OnDialogueFinished;
 
     [SerializeField] List<GameObject> Panels;
     [SerializeField] SubtitleManager _subtitleManager;
@@ -64,6 +64,12 @@ public class PlayerUiManager : MonoBehaviour
     {
         _subtitleManager.SetMissionText(text);
     }
+
+    public void OnFinishSubtitle()
+    {
+        OnDialogueFinished?.Invoke();
+    }
+
     public void SetCurrentPanel(UiPanels whichPanelisActive)
     {
         if (CurrentPanel == whichPanelisActive) return;

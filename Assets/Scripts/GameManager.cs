@@ -37,8 +37,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         ChangeGameState(GameState.SubtitleState);
         PlayTutorial();
+    }
+
+    void EndSubtitle()
+    {
+        ChangeGameState(GameState.PlayState);
     }
 
     private void PlayTutorial()

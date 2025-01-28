@@ -11,7 +11,8 @@ public class SubtitleManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _missionTxt;
     [SerializeField] float textSpeed;
     [SerializeField] Image _imageComponent;
-    [SerializeField] AudioSource mySource;
+    [SerializeField] AudioSource _mySource;
+    [SerializeField] PlayerUiManager _uiManager;
 
    //public event Action OnSubtitleFinished;
     AudioClip narratorsAudio;
@@ -47,7 +48,7 @@ public class SubtitleManager : MonoBehaviour
     {
         _index = 0;
         _subtitleTxt.text = "";
-        mySource.PlayOneShot(myLines.narratorsClip);
+        _mySource.PlayOneShot(myLines.narratorsClip);
         StartCoroutine(TypeLine());
     }
     void NextLine()
@@ -66,8 +67,8 @@ public class SubtitleManager : MonoBehaviour
 
     IEnumerator WaitSpeech()
     {
-        yield return new WaitUntil(() => !mySource.isPlaying);
-        OnSubtitleFinished?.Invoke();
+        yield return new WaitUntil(() => !_mySource.isPlaying);
+       // OnSubtitleFinished?.Invoke();
     }
 
     IEnumerator TypeLine()
