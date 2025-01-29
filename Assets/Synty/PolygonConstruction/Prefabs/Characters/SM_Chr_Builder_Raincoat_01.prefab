@@ -3569,7 +3569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press [E] to interact
+  m_text: '[E]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5354,9 +5354,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _subtitleTxt: {fileID: 3754140463953866631}
+  _missionTxt: {fileID: 0}
   textSpeed: 0.05
   _imageComponent: {fileID: 6263766473852153458}
-  mySource: {fileID: 4836038249266885534}
+  _mySource: {fileID: 0}
+  _uiManager: {fileID: 0}
 --- !u!82 &4836038249266885534
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6188,8 +6190,6 @@ MonoBehaviour:
   - {fileID: 6276025037233759533}
   - {fileID: 5967269482418960355}
   - {fileID: 7489937912945600173}
-  _subtitles:
-  - {fileID: 11400000, guid: 907528af49b14e543bac4a822338a027, type: 2}
   _subtitleManager: {fileID: 5400656703261494563}
   _interractSymbol: {fileID: 613112594367172372}
   _corshair: {fileID: 3616356177695690040}
