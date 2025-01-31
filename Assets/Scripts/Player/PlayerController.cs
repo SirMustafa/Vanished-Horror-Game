@@ -59,22 +59,8 @@ public class PlayerController : MonoBehaviour
         if (!_isSitting)
         {
             _isSitting = true;
-            StartCoroutine(MoveToChair(chairPosition));
-        }
-    }
 
-    private IEnumerator MoveToChair(Vector3 chairPosition)
-    {
-        while (Vector3.Distance(transform.position, chairPosition) > 0.1f)
-        {
-            Vector3 direction = (chairPosition - transform.position).normalized;
-            Vector3 movement = direction * _currentSpeed * Time.deltaTime;
-            _characterController.Move(movement);
-            yield return null;
         }
-        _isSitting = false;
-        _movementInput = Vector3.zero;
-        _animator.SetBool("isSitting",true);
     }
 
     private void HandleMovement(Vector2 input)

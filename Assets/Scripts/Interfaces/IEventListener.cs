@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEventListener<T>
+public interface IEventListener
 {
-    void Raise(T parameter);
+    void Raise();
 }

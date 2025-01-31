@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     {
         None,
         PlayState,
-        SubtitleState,
         TabState,
         CinematicState,
         PauseState,
@@ -25,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Inject]
     void InjectDependencies(PlayerUiManager playerUiManager, QuestManager taskmanager)
-    {
+    {  
         _playerUi = playerUiManager;
         _taskManager = taskmanager;
     }
@@ -37,26 +36,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
-        ChangeGameState(GameState.SubtitleState);
-        PlayTutorial();
-    }
-
-    void EndSubtitle()
-    {
         ChangeGameState(GameState.PlayState);
+        Invoke("StartQuestCycle", 1f);
     }
 
-    private void PlayTutorial()
+    void StartQuestCycle()
     {
-        _playerUi.ShowSubtitle(_subtitles[0]);
-        //_playerUi.OnSubtitleFinished += OnTutorialFinished;
+        _taskManager.StartQuest();
     }
-
     public void ChangeGameState(GameState newState)
     {
         CurrentGameState = newState;
-        _playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
+        //_playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
 
         switch (newState)
         {

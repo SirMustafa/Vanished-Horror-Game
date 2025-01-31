@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventListener<T> : MonoBehaviour, IEventListener<T>
+public class EventListener : MonoBehaviour, IEventListener
 {
-    public EventSO<T> gameEvent;
-    public UnityEvent<T> response;
+    public EventSO gameEvent;
+    public UnityEvent response;
 
     private void OnEnable()
     {
@@ -18,8 +18,8 @@ public class EventListener<T> : MonoBehaviour, IEventListener<T>
         gameEvent.UnRegister(this);
     }
 
-    public void Raise(T parameter)
+    public void Raise()
     {
-        response.Invoke(parameter);
+        response.Invoke();
     }
 }

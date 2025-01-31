@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Event")]
-public class EventSO<T> : ScriptableObject
+public class EventSO : ScriptableObject
 {
-    private List<IEventListener<T>> _listeners = new List<IEventListener<T>>();
+    private List<IEventListener> _listeners = new List<IEventListener>();
 
-    public void Register(IEventListener<T> listener)
+    public void Register(IEventListener listener)
     {
         if (!_listeners.Contains(listener))
         {
@@ -16,7 +16,7 @@ public class EventSO<T> : ScriptableObject
         }
     }
 
-    public void UnRegister(IEventListener<T> listener)
+    public void UnRegister(IEventListener listener)
     {
         if (_listeners.Contains(listener))
         {
@@ -24,11 +24,11 @@ public class EventSO<T> : ScriptableObject
         }
     }
 
-    public void Raise(T parameter)
+    public void Raise()
     {
         for (int i = _listeners.Count - 1; i >= 0; i--)
         {
-            _listeners[i].Raise(parameter);
+            _listeners[i].Raise();
         }
     }
 }

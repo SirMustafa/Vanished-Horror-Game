@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SubtitleManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _subtitleTxt;
     [SerializeField] TextMeshProUGUI _missionTxt;
-    [SerializeField] float textSpeed;
     [SerializeField] Image _imageComponent;
     [SerializeField] AudioSource _mySource;
     [SerializeField] PlayerUiManager _uiManager;
+    [SerializeField] UnityEvent OnSubtitleEndEvent;
+    [SerializeField] float textSpeed;
 
-   //public event Action OnSubtitleFinished;
     AudioClip narratorsAudio;
     SubtitlesSO _currentLine;
     int _index;
@@ -68,7 +69,7 @@ public class SubtitleManager : MonoBehaviour
     IEnumerator WaitSpeech()
     {
         yield return new WaitUntil(() => !_mySource.isPlaying);
-       // OnSubtitleFinished?.Invoke();
+        OnSubtitleEndEvent?.Invoke();
     }
 
     IEnumerator TypeLine()
@@ -77,7 +78,7 @@ public class SubtitleManager : MonoBehaviour
         {
             _subtitleTxt.text += c;
             yield return new WaitForSeconds(textSpeed);
-        }   
+        }
         NextLine();
     }
 }

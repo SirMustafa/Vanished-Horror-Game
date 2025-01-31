@@ -10,6 +10,7 @@ public class QuestInfoSO : ScriptableObject
     public string TaskName;
     public string TaskDescription;
     public bool isCompleted = false;
+    public bool isJustSubtitle = false;
     public Action OnTaskCompleted;
     public SubtitlesSO subtitles;
     public void CompleteTask()

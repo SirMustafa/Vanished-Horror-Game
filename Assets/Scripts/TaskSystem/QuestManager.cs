@@ -7,8 +7,8 @@ using Zenject;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] private List<QuestInfoSO> tasksQue = new List<QuestInfoSO>();
-    private int _currentTaskIndex = 0;
     private PlayerUiManager _playerUi;
+    private QuestInfoSO currentTask;
 
     [Inject]
     void setup(PlayerUiManager playerui)
@@ -18,9 +18,9 @@ public class QuestManager : MonoBehaviour
 
     public void StartQuest()
     {
-        if (_currentTaskIndex < tasksQue.Count)
+        if (tasksQue.Count > 0)
         {
-            QuestInfoSO currentTask = tasksQue[_currentTaskIndex];
+            currentTask = tasksQue[0];
             Debug.Log($"Görev Baþladý: {currentTask.TaskName}");
 
             if (currentTask.subtitles != null)
@@ -36,18 +36,34 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void CheckQuest()
+    {
+        if (currentTask.isJustSubtitle)
+        {
+            CompleteCurrentQuest();
+        } 
+    }
+
     private void CompleteCurrentQuest()
     {
-        _currentTaskIndex++;
-
-        if (_currentTaskIndex < tasksQue.Count)
+        if (currentTask != null)
         {
-            _playerUi.SetMissionText("No mission for now");
-            //StartQuest();
+            tasksQue.RemoveAt(0);
+        }
+
+        if (tasksQue.Count > 0)
+        {
+            StartCoroutine(waitAlitte());
         }
         else
         {
             Debug.Log("Tüm görevler tamamlandý!");
         }
+    }
+    IEnumerator waitAlitte()
+    {
+        yield return new WaitForSeconds(1);
+        _playerUi.SetMissionText("No mission for now");
+        StartQuest();
     }
 }

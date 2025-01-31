@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
@@ -55,19 +56,20 @@ public class PlayerUiManager : MonoBehaviour
         _corshair.SetActive(!isInterracting);
     }
 
+    public void OnEndSubtitle()
+    {
+        SetCurrentPanel(UiPanels.GamePlayPanel);
+    }
+
     public void ShowSubtitle(SubtitlesSO whichSubtitle)
     {
         SetCurrentPanel(UiPanels.SubtitlePanel);
         _subtitleManager.SetAndStart(whichSubtitle);
     }
+
     public void SetMissionText(string text)
     {
         _subtitleManager.SetMissionText(text);
-    }
-
-    public void OnFinishSubtitle()
-    {
-        OnDialogueFinished?.Invoke();
     }
 
     public void SetCurrentPanel(UiPanels whichPanelisActive)
@@ -84,15 +86,13 @@ public class PlayerUiManager : MonoBehaviour
 
     public void RestartGame()
     {
-
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneTransition.Sceneinstance.NextLevel(currentScene);
     }
-    public void ResumeGame()
-    {
 
-    }
     public void MainMenu()
     {
-
+        SceneTransition.Sceneinstance.NextLevel(0);
     }
     public void Quit()
     {

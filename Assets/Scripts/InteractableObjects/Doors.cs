@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Doors : MonoBehaviour, IInteractable
+public class Doors : InteractableBase
 {
     [SerializeField] private float _rotationDuration = 0.5f;
     [SerializeField] QuestInfoSO doorTask;
     private bool _isOpen = false;
 
-    public void MyInterract()
+    public override void MyInterract()
     {
         if (_isOpen)
         {

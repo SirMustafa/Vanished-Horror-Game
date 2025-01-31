@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour, IInteractable
+public class Bed : InteractableBase
 {
     bool isOpened = false;
     float _rotationDuration = 1f;
 
-    public void MyInterract()
+    public override void MyInterract()
     {
         if (isOpened)
         {
