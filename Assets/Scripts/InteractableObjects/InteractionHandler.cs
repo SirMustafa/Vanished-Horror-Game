@@ -30,6 +30,7 @@ public class InteractionHandler : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward);
         bool hasHit = Physics.Raycast(ray, out RaycastHit hit, interactionRange, interactableLayer);
+        //Debug.DrawRay(ray.origin, ray.direction * interactionRange, hasHit ? Color.green : Color.red, 0.1f);
 
         if (hasHit != _isInteracting)
         {
@@ -47,9 +48,17 @@ public class InteractionHandler : MonoBehaviour
         }
     }
 
-    public void SetHandObject(IInteractable handObject)
+    public void PickObject(IInteractable handObject)
     {
-        _handInteractable = handObject;
+        if (_handInteractable is null)
+        {
+            _handInteractable = handObject;
+        }
+    }
+
+    public void DropObject()
+    {
+        _handInteractable = null;
     }
 
     private void Interact()
@@ -60,7 +69,7 @@ public class InteractionHandler : MonoBehaviour
         }
         else
         {
-            _currentInteractable?.MyInterract();
+          _currentInteractable?.MyInterract();
         }
     }
 }

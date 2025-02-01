@@ -11,7 +11,6 @@ public class SubtitleManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _subtitleTxt;
     [SerializeField] TextMeshProUGUI _missionTxt;
     [SerializeField] Image _imageComponent;
-    [SerializeField] AudioSource _mySource;
     [SerializeField] PlayerUiManager _uiManager;
     [SerializeField] UnityEvent OnSubtitleEndEvent;
     [SerializeField] float textSpeed;
@@ -19,6 +18,7 @@ public class SubtitleManager : MonoBehaviour
     AudioClip narratorsAudio;
     SubtitlesSO _currentLine;
     int _index;
+    float _duration;
 
     public void CallNextLine()
     {
@@ -49,7 +49,8 @@ public class SubtitleManager : MonoBehaviour
     {
         _index = 0;
         _subtitleTxt.text = "";
-        _mySource.PlayOneShot(myLines.narratorsClip);
+        AudioManager.AudioInstance.PlaySubtitle(myLines.narratorsClip);
+        _duration = myLines.narratorsClip.length;
         StartCoroutine(TypeLine());
     }
     void NextLine()
@@ -68,7 +69,7 @@ public class SubtitleManager : MonoBehaviour
 
     IEnumerator WaitSpeech()
     {
-        yield return new WaitUntil(() => !_mySource.isPlaying);
+        yield return new WaitForSeconds(_duration);
         OnSubtitleEndEvent?.Invoke();
     }
 

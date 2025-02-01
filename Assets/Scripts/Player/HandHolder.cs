@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class HandHolder : MonoBehaviour
 {
+    [SerializeField] InteractionHandler _interactionHandler;
     Transform objestTransform;
+    
     public void AttachToHand(GameObject pickedObject)
     {
+        _interactionHandler.PickObject(pickedObject.GetComponent<IInteractable>());
         objestTransform = pickedObject.transform;
         objestTransform.transform.SetParent(transform);
         objestTransform.transform.localPosition = Vector3.zero;
         objestTransform.transform.localRotation = Quaternion.identity;
     }
-    public void LeaveHand(GameObject pickedObject)
+    public void LeaveHand()
     {
+        _interactionHandler.DropObject();
         objestTransform.parent = null;
-        objestTransform.localPosition = Vector3.zero;
-        objestTransform.localRotation = Quaternion.identity;
         objestTransform = null;
     }
 }

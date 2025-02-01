@@ -51,15 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "6084f96a-faf1-4678-815e-2e4f35257066",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Scroll",
                     "type": "Value",
                     "id": "7f4d09f2-4097-4400-a06a-76ef1695ee48",
@@ -184,17 +175,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ea9e41f7-3123-43bd-9745-5f5a15ccbd92",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

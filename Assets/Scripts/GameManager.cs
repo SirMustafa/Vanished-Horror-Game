@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ChangeGameState(GameState.PlayState);
-        //Invoke("StartQuestCycle", 1f);
+        Invoke("StartQuestCycle", 1f);
     }
 
     void StartQuestCycle()

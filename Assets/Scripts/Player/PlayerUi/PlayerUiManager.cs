@@ -8,11 +8,8 @@ using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
 {
-    public event Action OnDialogueFinished;
-
     [SerializeField] List<GameObject> Panels;
     [SerializeField] SubtitleManager _subtitleManager;
-    [SerializeField] GamePanel _gamePanelManager;
     [SerializeField] GameObject _interractSymbol;
     [SerializeField] GameObject _corshair;
 
@@ -23,11 +20,11 @@ public class PlayerUiManager : MonoBehaviour
     {
         None,
         GamePlayPanel,
-        SubtitlePanel,
         TabPanel,
         CinematicPanel,
         PausePanel,
-        OnCameraPanel
+        OnCameraPanel,
+        SubtitlePanel,
     }
     public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
 
@@ -36,7 +33,6 @@ public class PlayerUiManager : MonoBehaviour
     {
         _gameInputs = inputs;
         _gameInputs.OnLeftMouseEvent += CheckLeftMouseInput;
-        _gameInputs.OnScrollingEvent += Scrolling;
     }
 
     private void Start()
@@ -49,14 +45,6 @@ public class PlayerUiManager : MonoBehaviour
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {
             _subtitleManager.CallNextLine();
-        }
-    }
-
-    private void Scrolling(float scrollvalue)
-    {
-        if (CurrentPanel == UiPanels.GamePlayPanel)
-        {
-            _gamePanelManager.Scrolling(scrollvalue);
         }
     }
 

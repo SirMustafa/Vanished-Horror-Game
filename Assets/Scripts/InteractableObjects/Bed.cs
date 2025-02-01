@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bed : InteractableBase
 {
     bool isOpened = false;
+    bool canSleep = false;
     float _rotationDuration = 1f;
 
     public override void MyInterract()
