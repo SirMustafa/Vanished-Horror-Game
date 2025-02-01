@@ -12,9 +12,10 @@ public class PlayerUiManager : MonoBehaviour
 
     [SerializeField] List<GameObject> Panels;
     [SerializeField] SubtitleManager _subtitleManager;
+    [SerializeField] GamePanel _gamePanelManager;
     [SerializeField] GameObject _interractSymbol;
     [SerializeField] GameObject _corshair;
-    
+
     Inputs _gameInputs;
     int _panelsCount;
 
@@ -35,6 +36,7 @@ public class PlayerUiManager : MonoBehaviour
     {
         _gameInputs = inputs;
         _gameInputs.OnLeftMouseEvent += CheckLeftMouseInput;
+        _gameInputs.OnScrollingEvent += Scrolling;
     }
 
     private void Start()
@@ -47,6 +49,14 @@ public class PlayerUiManager : MonoBehaviour
         if (CurrentPanel == UiPanels.SubtitlePanel)
         {
             _subtitleManager.CallNextLine();
+        }
+    }
+
+    private void Scrolling(float scrollvalue)
+    {
+        if (CurrentPanel == UiPanels.GamePlayPanel)
+        {
+            _gamePanelManager.Scrolling(scrollvalue);
         }
     }
 

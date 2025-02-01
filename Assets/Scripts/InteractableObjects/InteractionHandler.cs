@@ -7,9 +7,11 @@ public class InteractionHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private float interactionRange = 3f;
+
+    private IInteractable _currentInteractable;
+    private IInteractable _handInteractable;
     private PlayerUiManager _uiManager;
     private Inputs _inputs;
-    private IInteractable _currentInteractable;
     private bool _isInteracting;
 
     [Inject]
@@ -45,8 +47,20 @@ public class InteractionHandler : MonoBehaviour
         }
     }
 
+    public void SetHandObject(IInteractable handObject)
+    {
+        _handInteractable = handObject;
+    }
+
     private void Interact()
     {
-        _currentInteractable?.MyInterract();
+        if (_handInteractable is not null)
+        {
+            _handInteractable.MyInterract();
+        }
+        else
+        {
+            _currentInteractable?.MyInterract();
+        }
     }
 }

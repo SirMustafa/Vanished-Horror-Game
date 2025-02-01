@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ChangeGameState(GameState.PlayState);
-        Invoke("StartQuestCycle", 1f);
+        //Invoke("StartQuestCycle", 1f);
     }
 
     void StartQuestCycle()
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     public void ChangeGameState(GameState newState)
     {
         CurrentGameState = newState;
-        //_playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
+        _playerUi.SetCurrentPanel((PlayerUiManager.UiPanels)newState);
 
         switch (newState)
         {
