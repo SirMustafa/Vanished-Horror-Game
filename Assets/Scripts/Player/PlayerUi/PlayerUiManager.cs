@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -18,13 +17,13 @@ public class PlayerUiManager : MonoBehaviour
 
     public enum UiPanels
     {
-        None,
+        SubtitlePanel,
         GamePlayPanel,
         TabPanel,
         CinematicPanel,
         PausePanel,
         OnCameraPanel,
-        SubtitlePanel,
+        None,
     }
     public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
 

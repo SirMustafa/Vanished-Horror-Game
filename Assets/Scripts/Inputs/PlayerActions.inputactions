@@ -69,6 +69,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "69aee511-3545-42d4-8209-2b1c996e48bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Esc",
                     "type": "Button",
                     "id": "25a36743-485c-4d1f-a0be-77b73c40ee22",
@@ -139,7 +148,7 @@
                     "id": "4a6e3bc3-6b0a-4610-81be-70f51b017d0c",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2,InvertVector2(invertX=false,invertY=false)",
                     "groups": "",
                     "action": "MouseLook",
                     "isComposite": false,
@@ -208,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "937d427a-15ca-4f35-aad5-7812fa333fe2",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Cinematic0Manager : MonoBehaviour
 {
-    [SerializeField] PlayerUiManager playerUi; 
+    [SerializeField] PlayerUiManager playerUi;
+    [SerializeField] List<SubtitlesSO> subtitles = new List<SubtitlesSO>();
+    int index = 0;
 
     public void ActivateSubtitlePanel()
     {
-        playerUi.SetCurrentPanel(PlayerUiManager.UiPanels.SubtitlePanel);
+        playerUi.ShowSubtitle(subtitles[index]);
+        index++;
     }
 }

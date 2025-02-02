@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-public class Cam : InteractableBase
+public class Cam : MonoBehaviour,IInteractable
 {
     [SerializeField] GameObject virtualCamera;
     private Inputs _inputs;
@@ -17,7 +17,7 @@ public class Cam : InteractableBase
         _gameManager = gamemanager;
     }
 
-    public override void MyInterract()
+    public void MyInterract()
     {
         _inputs.SwitchActionMap(Inputs.ActionMap.OnCamera);
         _gameManager.ChangeGameState(GameManager.GameState.OnCameraState);

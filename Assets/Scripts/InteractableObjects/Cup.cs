@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Cup : InteractableBase
+public class Cup : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent<GameObject> pickMeEvent;
     [SerializeField] private UnityEvent dropMeEvent;
@@ -15,7 +15,7 @@ public class Cup : InteractableBase
     {
         body = GetComponent<Rigidbody>();
     }
-    public override void MyInterract()
+    public void MyInterract()
     {
         if (!isPicked)
         {

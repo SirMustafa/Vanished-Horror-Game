@@ -17,8 +17,12 @@ public class HandHolder : MonoBehaviour
     }
     public void LeaveHand()
     {
-        _interactionHandler.DropObject();
-        objestTransform.parent = null;
-        objestTransform = null;
+        if (objestTransform != null) 
+        {
+            _interactionHandler.DropObject();
+            objestTransform.parent = null;
+            objestTransform = null;
+        }
+        
     }
 }

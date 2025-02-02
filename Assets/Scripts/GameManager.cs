@@ -10,21 +10,21 @@ public class GameManager : MonoBehaviour
 
     public enum GameState
     {
-        None,
         PlayState,
         TabState,
         CinematicState,
         PauseState,
-        OnCameraState
+        OnCameraState,
+        None,
     }
 
     public GameState CurrentGameState { get; private set; }
     private PlayerUiManager _playerUi;
-    private QuestManager _taskManager;  
+    private QuestManager _taskManager;
 
     [Inject]
     void InjectDependencies(PlayerUiManager playerUiManager, QuestManager taskmanager)
-    {  
+    {
         _playerUi = playerUiManager;
         _taskManager = taskmanager;
     }
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ChangeGameState(GameState.PlayState);
-        Invoke("StartQuestCycle", 1f);
+        //Invoke("StartQuestCycle", 1f);
     }
 
     void StartQuestCycle()

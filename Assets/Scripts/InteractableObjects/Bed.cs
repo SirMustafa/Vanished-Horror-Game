@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : InteractableBase
+public class Bed : MonoBehaviour, IInteractable
 {
     bool isOpened = false;
     bool canSleep = false;
     float _rotationDuration = 1f;
 
-    public override void MyInterract()
+    public void MyInterract()
     {
         if (isOpened)
         {

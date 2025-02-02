@@ -12,9 +12,10 @@ public class Inputs : MonoBehaviour
     public event Action OnJumpEvent;
     public event Action OnInteractEven;
     public event Action OnLeftMouseEvent;
-    public event Action<float> OnScrollingEvent;
     public event Action<bool> OnAimingEvent;
-    public event Action<bool> OnSprintEvent;
+    public event Action<bool> OnSprintEvent; 
+    public event Action<float> OnScrollEvent;
+    public event Action OnDropEvent;
     [SerializeField] private PlayerInput playerInput;
 
     bool isGamePaused = false;
@@ -34,15 +35,6 @@ public class Inputs : MonoBehaviour
     {
         Vector2 input = context.ReadValue<Vector2>();
         OnMoveEvent?.Invoke(input);
-    }
-
-    public void OnScroll(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            float scrollValue = context.ReadValue<Vector2>().y;
-            OnScrollingEvent?.Invoke(scrollValue);
-        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -98,6 +90,22 @@ public class Inputs : MonoBehaviour
         else if (context.canceled)
         {
             OnSprintEvent?.Invoke(false);
+        }
+    }
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            float scrollValue = context.ReadValue<Vector2>().y;
+            OnScrollEvent?.Invoke(scrollValue);
+        }
+    }
+
+    public void OnDrop(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnDropEvent?.Invoke();
         }
     }
 }
