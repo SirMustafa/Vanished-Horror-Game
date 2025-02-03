@@ -27,10 +27,20 @@ public class AudioManager : MonoBehaviour
     {
 
     }
-    public void PlayAmbiance()
+    public void PlayAmbiance(AudioClip musicClip, bool isLooped)
     {
-
+        if (isLooped)
+        {
+            musicSource.clip = musicClip;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.PlayOneShot(musicClip);
+        }
     }
+
     public void PlaySubtitle(AudioClip subtitleSpeech)
     {
         subtitleSource.PlayOneShot(subtitleSpeech);

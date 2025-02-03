@@ -15,4 +15,5 @@ MonoBehaviour:
   TaskName: Open Door
   TaskDescription: 
   isCompleted: 0
+  isJustSubtitle: 0
   subtitles: {fileID: 11400000, guid: c879b4345873af840babf17b9119e862, type: 2}

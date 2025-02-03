@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 public class PlayerUiManager : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class PlayerUiManager : MonoBehaviour
     [SerializeField] GameObject _interractSymbol;
     [SerializeField] GameObject _corshair;
 
-    Inputs _gameInputs;
     int _panelsCount;
 
     public enum UiPanels
@@ -27,11 +25,9 @@ public class PlayerUiManager : MonoBehaviour
     }
     public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
 
-    [Inject]
-    void InjectDependencies(Inputs inputs)
+    private void OnEnable()
     {
-        _gameInputs = inputs;
-        _gameInputs.OnLeftMouseEvent += CheckLeftMouseInput;
+        EventBus.InteractionEvents.OnLeftMouseClick += CheckLeftMouseInput;
     }
 
     private void Start()
@@ -55,7 +51,7 @@ public class PlayerUiManager : MonoBehaviour
 
     public void OnEndSubtitle()
     {
-        SetCurrentPanel(UiPanels.GamePlayPanel);
+        EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.PlayState);
     }
 
     public void ShowSubtitle(SubtitlesSO whichSubtitle)
@@ -77,7 +73,7 @@ public class PlayerUiManager : MonoBehaviour
 
         for (int i = 0; i < _panelsCount; i++)
         {
-            Panels[i].SetActive(i == (int)whichPanelisActive);
+            Panels[i].SetActive(i == (int)whichPanelisActive); 
         }
     }
 

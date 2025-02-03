@@ -8,22 +8,17 @@ using UnityEngine.InputSystem;
 public class Inputs : MonoBehaviour
 {
     public UnityEvent OnEscBtn;
-    public event Action<Vector2> OnMoveEvent;
-    public event Action OnJumpEvent;
-    public event Action OnInteractEven;
-    public event Action OnLeftMouseEvent;
-    public event Action<bool> OnAimingEvent;
-    public event Action<bool> OnSprintEvent; 
-    public event Action<float> OnScrollEvent;
-    public event Action OnDropEvent;
     [SerializeField] private PlayerInput playerInput;
-
     bool isGamePaused = false;
     public enum ActionMap
     {
         Player,
         OnChair,
         OnCamera
+    }
+    private void OnEnable()
+    {
+        EventBus.InputEvents.OnActionMapChange += SwitchActionMap;
     }
 
     public void SwitchActionMap(ActionMap actionMap)
@@ -34,21 +29,21 @@ public class Inputs : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
-        OnMoveEvent?.Invoke(input);
+        EventBus.PlayerEvents.TriggerMove(input);
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            OnJumpEvent?.Invoke();
+            EventBus.PlayerEvents.TriggerJump();
         }
     }
     public void OnInterract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            OnInteractEven?.Invoke();
+            EventBus.InteractionEvents.TriggerInteract();
         }
     }
 
@@ -56,18 +51,18 @@ public class Inputs : MonoBehaviour
     {
         if (context.performed)
         {
-            OnAimingEvent?.Invoke(true);
+            EventBus.CameraEvents.TriggerAiming(true);
         }
         else if (context.canceled)
         {
-            OnAimingEvent?.Invoke(false);
+            EventBus.CameraEvents.TriggerAiming(true);
         }
     }
     public void OnLeftMouse(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            OnLeftMouseEvent?.Invoke();
+            EventBus.InteractionEvents.TriggerLeftMouseClick();
         }
     }
 
@@ -85,11 +80,11 @@ public class Inputs : MonoBehaviour
     {
         if (context.performed)
         {
-            OnSprintEvent?.Invoke(true);
+            EventBus.PlayerEvents.TriggerSprint(true);
         }
         else if (context.canceled)
         {
-            OnSprintEvent?.Invoke(false);
+            EventBus.PlayerEvents.TriggerSprint(false);
         }
     }
     public void OnScroll(InputAction.CallbackContext context)
@@ -97,7 +92,7 @@ public class Inputs : MonoBehaviour
         if (context.performed)
         {
             float scrollValue = context.ReadValue<Vector2>().y;
-            OnScrollEvent?.Invoke(scrollValue);
+            EventBus.CameraEvents.TriggerScroll(scrollValue);
         }
     }
 
@@ -105,7 +100,11 @@ public class Inputs : MonoBehaviour
     {
         if (context.performed)
         {
-            OnDropEvent?.Invoke();
+            EventBus.InteractionEvents.TriggerDrop();
         }
+    }
+    private void OnDisable()
+    {
+        EventBus.InputEvents.OnActionMapChange -= SwitchActionMap;
     }
 }

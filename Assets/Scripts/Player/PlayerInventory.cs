@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] List<ItemFrame> frames = new List<ItemFrame>();
     [SerializeField] Transform itemSeceltor;
     ItemFrame CurrentFrame;
-    Inputs _inputs;
     int currentIndex = 0;
 
-    [Inject]
-    void InjectDependencies(Inputs inputs)
+    private void OnEnable()
     {
-        _inputs = inputs;
-        _inputs.OnScrollEvent += OnScroll;
+        EventBus.CameraEvents.OnScroll += OnScroll;
+    }
+
+    private void Start()
+    {
+        SetCurrentFrame(currentIndex);
     }
 
     public void PickUp(IInteractable obj)
@@ -49,5 +50,9 @@ public class PlayerInventory : MonoBehaviour
         itemSeceltor.localPosition = Vector2.zero;
 
         CurrentFrame.Select();
+    }
+    private void OnDisable()
+    {
+        EventBus.CameraEvents.OnScroll -= OnScroll;
     }
 }

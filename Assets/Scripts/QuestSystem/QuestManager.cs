@@ -25,6 +25,8 @@ public class QuestManager : MonoBehaviour
 
             if (currentTask.subtitles != null)
             {
+                EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.SubtitleState);
+
                 _playerUi.ShowSubtitle(currentTask.subtitles);
                 _playerUi.SetMissionText(currentTask.TaskName);
             }

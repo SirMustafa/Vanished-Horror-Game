@@ -11,15 +11,17 @@ public class InteractionHandler : MonoBehaviour
     private IInteractable _currentInteractable;
     private IInteractable _handInteractable;
     private PlayerUiManager _uiManager;
-    private Inputs _inputs;
     private bool _isInteracting;
 
     [Inject]
-    void InjectDependencies(PlayerUiManager uiManager, Inputs inputs)
+    void InjectDependencies(PlayerUiManager uiManager)
     {
         _uiManager = uiManager;
-        _inputs = inputs;
-        _inputs.OnInteractEven += Interact;
+    }
+
+    private void OnEnable()
+    {
+        EventBus.InteractionEvents.OnInteract += Interact;
     }
 
     private void Update()
@@ -71,5 +73,9 @@ public class InteractionHandler : MonoBehaviour
         {
           _currentInteractable?.MyInterract();
         }
+    }
+    private void OnDisable()
+    {
+        EventBus.InteractionEvents.OnInteract -= Interact;
     }
 }

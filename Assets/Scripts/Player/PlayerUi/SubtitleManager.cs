@@ -37,6 +37,7 @@ public class SubtitleManager : MonoBehaviour
         _subtitleTxt.text = "";
         _currentLine = myLines;
         _imageComponent.sprite = myLines.narratorsSprite;
+        narratorsAudio = myLines.narratorsClip;
         StartDialouge(myLines);
     }
     public void SetMissionText(string shortDescription)
@@ -48,8 +49,8 @@ public class SubtitleManager : MonoBehaviour
     {
         _index = 0;
         _subtitleTxt.text = "";
-        AudioManager.AudioInstance.PlaySubtitle(myLines.narratorsClip);
-        _duration = myLines.narratorsClip.length;
+        AudioManager.AudioInstance.PlaySubtitle(narratorsAudio);
+        _duration = narratorsAudio.length;
         StartCoroutine(TypeLine());
     }
     void NextLine()

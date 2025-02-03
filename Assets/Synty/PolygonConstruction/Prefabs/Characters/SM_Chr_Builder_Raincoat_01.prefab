@@ -1992,11 +1992,10 @@ MonoBehaviour:
   _walkSpeed: 2
   _runSpeed: 4
   _gravity: -9.8
-  _jumpForce: 3
-  aimingCamera: {fileID: 0}
-  myRightHand: {fileID: 1732194163296666432}
+  _jumpForce: 1
+  _aimingCamera: {fileID: 0}
+  _myRightHand: {fileID: 0}
   _mouseLookCs: {fileID: 6180643047195888729}
-  _inputs: {fileID: 7488446204498497031}
 --- !u!114 &7488446204498497031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6638,12 +6637,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panels:
+  - {fileID: 6580906104304649516}
   - {fileID: 3429133748341016739}
   - {fileID: 2359472228668350458}
   - {fileID: 6276025037233759533}
   - {fileID: 5967269482418960355}
   - {fileID: 7489937912945600173}
-  - {fileID: 6580906104304649516}
   - {fileID: 6276025037233759533}
   _subtitleManager: {fileID: 5400656703261494563}
   _interractSymbol: {fileID: 613112594367172372}

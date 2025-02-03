@@ -9,10 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _gravity;
     [SerializeField] private float _jumpForce;
-    [SerializeField] private GameObject aimingCamera;
-    [SerializeField] private HandHolder myRightHand;
+    [SerializeField] private GameObject _aimingCamera;
+    [SerializeField] private HandHolder _myRightHand;
     [SerializeField] private MouseLook _mouseLookCs;
-    [SerializeField] private Inputs _inputs;
 
     private CharacterController _characterController;
     private Animator _animator;
@@ -29,11 +28,14 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         _currentSpeed = _walkSpeed;
+    }
 
-        _inputs.OnMoveEvent += HandleMovement;
-        _inputs.OnJumpEvent += HandleJump;
-        _inputs.OnAimingEvent += HandleAiming;
-        _inputs.OnSprintEvent += HandleSprint;
+    private void OnEnable()
+    {
+        EventBus.PlayerEvents.OnMove += HandleMovement;
+        EventBus.PlayerEvents.OnJump += HandleJump;
+        EventBus.PlayerEvents.OnSprint += HandleSprint;
+        EventBus.CameraEvents.OnAiming += HandleAiming;
     }
 
     private void Update()
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAiming(bool isAiming)
     {
-        aimingCamera.SetActive(isAiming);
+        _aimingCamera.SetActive(isAiming);
         _mouseLookCs.SetSensitivity(isAiming);
     }
 
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator CallHandHolder(GameObject myObject)
     {
         yield return new WaitForSeconds(0.5f);
-        myRightHand.AttachToHand(myObject);
+        _myRightHand.AttachToHand(myObject);
     }
 
     private void UpdateAnimatorParameters()
@@ -107,5 +109,12 @@ public class PlayerController : MonoBehaviour
 
         _animator.SetFloat(_VelocityXHash, velocityX, 0.1f, Time.deltaTime);
         _animator.SetFloat(_VelocityZHash, velocityZ, 0.1f, Time.deltaTime);
+    }
+    private void OnDisable()
+    {
+        EventBus.PlayerEvents.OnMove -= HandleMovement;
+        EventBus.PlayerEvents.OnJump -= HandleJump;
+        EventBus.PlayerEvents.OnSprint -= HandleSprint;
+        EventBus.CameraEvents.OnAiming -= HandleAiming;
     }
 }
