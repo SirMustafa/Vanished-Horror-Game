@@ -6,6 +6,7 @@ using UnityEngine;
 public class Doors : MonoBehaviour,IInteractable
 {
     [SerializeField] private float _rotationDuration = 0.5f;
+    [SerializeField] bool _isCinematic;
     [SerializeField] QuestInfoSO doorTask;
     private bool _isOpen = false;
 
@@ -20,7 +21,7 @@ public class Doors : MonoBehaviour,IInteractable
         {
             _isOpen = true;
             transform.DORotate(transform.eulerAngles + new Vector3(0, 90, 0), _rotationDuration);
-            doorTask.CompleteTask();
+            if(!_isCinematic) doorTask.CompleteTask();
         }
     }
 }

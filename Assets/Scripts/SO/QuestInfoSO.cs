@@ -15,7 +15,7 @@ public class QuestInfoSO : ScriptableObject
     public SubtitlesSO subtitles;
     public void CompleteTask()
     {
-        //if (isCompleted) return;
+        if (isCompleted) return;
         isCompleted = true;
         OnTaskCompleted?.Invoke();
     }
