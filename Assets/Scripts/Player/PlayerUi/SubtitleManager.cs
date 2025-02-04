@@ -14,10 +14,12 @@ public class SubtitleManager : MonoBehaviour
     [SerializeField] UnityEvent OnSubtitleEndEvent;
     [SerializeField] float textSpeed;
 
-    AudioClip narratorsAudio;
-    SubtitlesSO _currentLine;
-    int _index;
-    float _duration;
+    private AudioClip narratorsAudio;
+    private SubtitlesSO _currentLine;
+    private int _index;
+    private float _duration;
+    private bool _isTextFinished;
+    private bool _isAudioFinished;
 
     public void CallNextLine()
     {
@@ -38,22 +40,30 @@ public class SubtitleManager : MonoBehaviour
         _currentLine = myLines;
         _imageComponent.sprite = myLines.narratorsSprite;
         narratorsAudio = myLines.narratorsClip;
-        StartDialouge(myLines);
+
+        StartDialogue();
     }
+
     public void SetMissionText(string shortDescription)
     {
         _missionTxt.text = shortDescription;
     }
 
-    void StartDialouge(SubtitlesSO myLines)
+    private void StartDialogue()
     {
         _index = 0;
         _subtitleTxt.text = "";
+        _isTextFinished = false;
+        _isAudioFinished = false;
+
         AudioManager.AudioInstance.PlaySubtitle(narratorsAudio);
         _duration = narratorsAudio.length;
+
         StartCoroutine(TypeLine());
+        StartCoroutine(WaitForAudioToEnd());
     }
-    void NextLine()
+
+    private void NextLine()
     {
         if (_index < _currentLine.lines.Length - 1)
         {
@@ -63,23 +73,35 @@ public class SubtitleManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(WaitSpeech());
+            _isTextFinished = true;
+            StartCoroutine(CheckCompletion());
         }
     }
 
-    IEnumerator WaitSpeech()
+    private IEnumerator TypeLine()
     {
-        yield return new WaitForSeconds(_duration);
-        OnSubtitleEndEvent?.Invoke();
-    }
-
-    IEnumerator TypeLine()
-    {
-        foreach (char c in _currentLine.lines[_index].ToCharArray())
+        foreach (char c in _currentLine.lines[_index])
         {
             _subtitleTxt.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+
         NextLine();
+    }
+
+    private IEnumerator WaitForAudioToEnd()
+    {
+        yield return new WaitForSeconds(_duration);
+        _isAudioFinished = true;
+        StartCoroutine(CheckCompletion());
+    }
+
+    private IEnumerator CheckCompletion()
+    {
+        if (_isTextFinished && _isAudioFinished)
+        {
+            yield return null;
+            OnSubtitleEndEvent?.Invoke();
+        }
     }
 }

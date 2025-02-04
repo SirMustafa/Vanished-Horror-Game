@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b5f3912f26a814b9fe293e2f066afc, type: 3}
   m_Name: TutorialTask
   m_EditorClassIdentifier: 
-  TaskName: Learn someting nigga
+  TaskName: Learn controls
   TaskDescription: 
   isCompleted: 0
   isJustSubtitle: 1

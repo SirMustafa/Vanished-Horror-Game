@@ -21,7 +21,6 @@ public class QuestManager : MonoBehaviour
         if (tasksQue.Count > 0)
         {
             currentTask = tasksQue[0];
-            Debug.Log($"Görev Baþladý: {currentTask.TaskName}");
 
             if (currentTask.subtitles != null)
             {

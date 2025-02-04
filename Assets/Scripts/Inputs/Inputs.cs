@@ -55,7 +55,7 @@ public class Inputs : MonoBehaviour
         }
         else if (context.canceled)
         {
-            EventBus.CameraEvents.TriggerAiming(true);
+            EventBus.CameraEvents.TriggerAiming(false);
         }
     }
     public void OnLeftMouse(InputAction.CallbackContext context)
