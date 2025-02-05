@@ -1994,7 +1994,7 @@ MonoBehaviour:
   _gravity: -9.8
   _jumpForce: 1
   _aimingCamera: {fileID: 0}
-  _myRightHand: {fileID: 0}
+  _myRightHand: {fileID: 1732194163296666432}
   _mouseLookCs: {fileID: 6180643047195888729}
 --- !u!114 &7488446204498497031
 MonoBehaviour:
@@ -5314,7 +5314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
