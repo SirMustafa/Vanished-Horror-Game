@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] List<ItemFrame> frames = new List<ItemFrame>();
-    [SerializeField] Transform itemSeceltor;
-    ItemFrame CurrentFrame;
-    int currentIndex = 0;
+    [SerializeField] private List<ItemFrame> frames = new List<ItemFrame>();
+    [SerializeField] private List<IInteractable> items = new List<IInteractable>(5);
+    [SerializeField] private Transform itemSelector;
+
+    private ItemFrame currentFrame;
+    private int currentIndex = 0;
+    private const int MaxInventorySize = 5;
 
     private void OnEnable()
     {
@@ -19,12 +22,40 @@ public class PlayerInventory : MonoBehaviour
         SetCurrentFrame(currentIndex);
     }
 
-    public void PickUp(IInteractable obj)
+    public bool AddToInventory(IInteractable obj)
     {
+        if (items.Count >= MaxInventorySize)
+        {
+            return false;
+        }
 
+        items.Add(obj);
+        UpdateUI();
+        return true;
     }
 
-    public void OnScroll(float scrollValue)
+    private void UpdateUI()
+    {
+        for (int i = 0; i < frames.Count; i++)
+        {
+            if (i < items.Count)
+            {
+                Sprite itemSprite = items[i].GetSprite();
+                frames[i].SetItem(itemSprite);
+            }
+            else
+            {
+                frames[i].ClearItem();
+            }
+        }
+    }
+
+    public bool IsInventoryFull()
+    {
+        return items.Count >= MaxInventorySize;
+    }
+
+    private void OnScroll(float scrollValue)
     {
         if (scrollValue < 0 && currentIndex < frames.Count - 1)
         {
@@ -38,19 +69,20 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void SetCurrentFrame(int whichFrame)
+    private void SetCurrentFrame(int whichFrame)
     {
-        if (CurrentFrame is not null)
+        if (currentFrame != null)
         {
-            CurrentFrame.Deselect();
+            currentFrame.Deselect();
         }
 
-        CurrentFrame = frames[whichFrame];
-        itemSeceltor.SetParent(CurrentFrame.transform);
-        itemSeceltor.localPosition = Vector2.zero;
+        currentFrame = frames[whichFrame];
+        itemSelector.SetParent(currentFrame.transform);
+        itemSelector.localPosition = Vector2.zero;
 
-        CurrentFrame.Select();
+        currentFrame.Select();
     }
+
     private void OnDisable()
     {
         EventBus.CameraEvents.OnScroll -= OnScroll;

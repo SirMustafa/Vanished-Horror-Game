@@ -26,4 +26,19 @@ public class Chair : MonoBehaviour, IInteractable
         _inputs.SwitchActionMap(Inputs.ActionMap.OnChair);
         _player.SitChair(_chairPosition);
     }
+
+    public bool CanBePickedUp()
+    {
+        return false;
+    }
+
+    public Transform GetInteractionTarget()
+    {
+        return this.transform;
+    }
+
+    public Sprite GetSprite()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -11,12 +11,16 @@ public class InteractionHandler : MonoBehaviour
     private IInteractable _currentInteractable;
     private IInteractable _handInteractable;
     private PlayerUiManager _uiManager;
+    private PlayerController _playerController;
+    private PlayerInventory _playerInventory;
     private bool _isInteracting;
 
     [Inject]
-    void InjectDependencies(PlayerUiManager uiManager)
+    void InjectDependencies(PlayerUiManager uiManager, PlayerController player, PlayerInventory playerýnventory)
     {
         _uiManager = uiManager;
+        _playerController = player;
+        _playerInventory = playerýnventory;
     }
 
     private void OnEnable()
@@ -32,7 +36,6 @@ public class InteractionHandler : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward);
         bool hasHit = Physics.Raycast(ray, out RaycastHit hit, interactionRange, interactableLayer);
-        //Debug.DrawRay(ray.origin, ray.direction * interactionRange, hasHit ? Color.green : Color.red, 0.1f);
 
         if (hasHit != _isInteracting)
         {
@@ -50,7 +53,7 @@ public class InteractionHandler : MonoBehaviour
         }
     }
 
-    public void PickObject(IInteractable handObject)
+    public void SetHandObject(IInteractable handObject)
     {
         if (_handInteractable is null)
         {
@@ -68,12 +71,28 @@ public class InteractionHandler : MonoBehaviour
         if (_handInteractable is not null)
         {
             _handInteractable.MyInterract();
+            return;
         }
-        else
+
+        if (_currentInteractable is not null)
         {
-          _currentInteractable?.MyInterract();
+            if (_currentInteractable.CanBePickedUp())
+            {
+                _playerController.PickingAnimation(_currentInteractable.GetInteractionTarget());
+                _playerInventory.AddToInventory(_currentInteractable);
+            }
+            else
+            {
+                _currentInteractable.MyInterract();
+            }
         }
     }
+
+    IEnumerator waitforAnimation()
+    {
+        yield return null;
+    }
+
     private void OnDisable()
     {
         EventBus.InteractionEvents.OnInteract -= Interact;

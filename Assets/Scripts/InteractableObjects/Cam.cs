@@ -7,6 +7,21 @@ public class Cam : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject virtualCamera;
 
+    public bool CanBePickedUp()
+    {
+        return false;
+    }
+
+    public Transform GetInteractionTarget()
+    {
+        return this.transform;
+    }
+
+    public Sprite GetSprite()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void MyInterract()
     {
         EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.OnCamera);

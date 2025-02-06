@@ -8,6 +8,7 @@ public class Cup : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent<GameObject> pickMeEvent;
     [SerializeField] private UnityEvent dropMeEvent;
+    [SerializeField] private Sprite mySprite;
     Rigidbody body;
     bool isPicked;
 
@@ -34,5 +35,20 @@ public class Cup : MonoBehaviour, IInteractable
     public void PickMeUp()
     {
         pickMeEvent.Invoke(this.gameObject);
+    }
+
+    public bool CanBePickedUp()
+    {
+        return true;
+    }
+
+    public Transform GetInteractionTarget()
+    {
+        return this.transform;
+    }
+
+    public Sprite GetSprite()
+    {
+        return mySprite;
     }
 }

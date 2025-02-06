@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dart : MonoBehaviour, IInteractable
+public class Radio : MonoBehaviour, IInteractable
 {
     public bool CanBePickedUp()
     {
-        return true;
+        return false;
     }
 
     public Transform GetInteractionTarget()

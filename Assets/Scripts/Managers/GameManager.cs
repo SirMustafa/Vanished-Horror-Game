@@ -6,6 +6,7 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private bool _isTesting;
     public enum GameState
     {
         SubtitleState,
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ChangeGameState(GameState.PlayState);
+        if (_isTesting) return;
         Invoke("StartQuestCycle", 1f);
     }
 

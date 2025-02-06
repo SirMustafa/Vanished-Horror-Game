@@ -9,6 +9,21 @@ public class Bed : MonoBehaviour, IInteractable
     bool canSleep = false;
     float _rotationDuration = 1f;
 
+    public bool CanBePickedUp()
+    {
+        return false;
+    }
+
+    public Transform GetInteractionTarget()
+    {
+        return this.transform;
+    }
+
+    public Sprite GetSprite()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void MyInterract()
     {
         if (isOpened)

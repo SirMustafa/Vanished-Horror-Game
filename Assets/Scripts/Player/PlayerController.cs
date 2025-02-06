@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _gravity;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private Transform _handikTarget;
     [SerializeField] private GameObject _aimingCamera;
-    [SerializeField] private HandHolder _myRightHand;
+    [SerializeField] private HandHolder _myRightHand;  
     [SerializeField] private MouseLook _mouseLookCs;
 
     private CharacterController _characterController;
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandlePickAnimation(GameObject whichObject)
     {
-        _animator.SetBool("isPickingUp",true);
+        _animator.SetBool("isPickingUp", true);
         StartCoroutine(CallHandHolder(whichObject));
     }
 
@@ -110,6 +111,13 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat(_VelocityXHash, velocityX, 0.1f, Time.deltaTime);
         _animator.SetFloat(_VelocityZHash, velocityZ, 0.1f, Time.deltaTime);
     }
+    public void PickingAnimation(Transform pickObjTransform)
+    {
+        _handikTarget.position = pickObjTransform.position;
+        _handikTarget.rotation = pickObjTransform.rotation;
+        _animator.SetTrigger("isPickingUp");
+    }
+
     private void OnDisable()
     {
         EventBus.PlayerEvents.OnMove -= HandleMovement;

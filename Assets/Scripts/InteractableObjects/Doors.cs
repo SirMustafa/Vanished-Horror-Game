@@ -3,12 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Doors : MonoBehaviour,IInteractable
+public class Doors : MonoBehaviour, IInteractable
 {
     [SerializeField] private float _rotationDuration = 0.5f;
     [SerializeField] bool _isCinematic;
     [SerializeField] QuestInfoSO doorTask;
     private bool _isOpen = false;
+
+    public bool CanBePickedUp()
+    {
+        return false;
+    }
+
+    public Transform GetInteractionTarget()
+    {
+        return this.transform;
+    }
+
+    public Sprite GetSprite()
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void MyInterract()
     {
