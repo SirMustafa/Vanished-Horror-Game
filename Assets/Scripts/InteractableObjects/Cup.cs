@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cup : MonoBehaviour, IInteractable
 {
     [SerializeField] private Sprite mySprite;
-    public void Interract()
+    public void MyInterract()
     {
         Debug.Log("amcuk");
     }

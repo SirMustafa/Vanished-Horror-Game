@@ -114,6 +114,7 @@ public class PlayerInventory : MonoBehaviour
         else
         {
             _handHolder.DetachFromHand();
+            _interactHandler.DropObject();
         }
     }
 

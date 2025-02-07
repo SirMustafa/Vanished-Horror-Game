@@ -6,10 +6,10 @@ using Zenject;
 
 public class Chair : MonoBehaviour, IInteractable
 {
+    [SerializeField] private Vector3 _chairPosition;
     private Inputs _inputs;
     private PlayerController _player;
-    private Vector3 _chairPosition;
-
+    
     [Inject]
     void InjectDependencies(PlayerController player, Inputs inputs)
     {
@@ -21,9 +21,9 @@ public class Chair : MonoBehaviour, IInteractable
         _chairPosition = transform.position + new Vector3(-1f, 0f, 0f);
     }
 
-    public void Interract()
+    public void MyInterract()
     {
-        _inputs.SwitchActionMap(Inputs.ActionMap.OnChair);
+        EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.OnChair);
         _player.SitChair(_chairPosition);
     }
 

@@ -65,7 +65,7 @@ public class InteractionHandler : MonoBehaviour
     {
         if (_handInteractable is not null)
         {
-            _handInteractable.Interract();
+            _handInteractable.MyInterract();
             return;
         }
 
@@ -77,7 +77,7 @@ public class InteractionHandler : MonoBehaviour
             }
             else
             {
-                _currentInteractable.Interract();
+                _currentInteractable.MyInterract();
             }
         }
     }

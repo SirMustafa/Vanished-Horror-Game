@@ -25,7 +25,7 @@ public class Dart : MonoBehaviour, IInteractable
         return mySprite;
     }
 
-    public void Interract()
+    public void MyInterract()
     {
         Debug.Log("babucuk");
     }

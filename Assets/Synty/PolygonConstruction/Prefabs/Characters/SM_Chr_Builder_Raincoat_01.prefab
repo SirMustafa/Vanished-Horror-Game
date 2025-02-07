@@ -1714,7 +1714,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4094360238052420}
@@ -1999,7 +1999,6 @@ MonoBehaviour:
   _aimingCamera: {fileID: 0}
   _myRightHand: {fileID: 1732194163296666432}
   _mouseLookCs: {fileID: 6180643047195888729}
-  _playerInventory: {fileID: 0}
 --- !u!114 &7488446204498497031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2091,7 +2090,11 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Elbow_R'\n\tTransform 'Shoulder_R'\n\tTransform
+    'Hand_R'\n\tTransform 'Elbow_R'\n\tTransform 'Shoulder_R'\n\tTransform 'Hand_R'\n\tTransform
+    'Elbow_R'\n\tTransform 'Shoulder_R'\n\tTransform 'Hand_R'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

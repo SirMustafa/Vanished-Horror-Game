@@ -12,11 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private Transform _handikTarget;
     [SerializeField] private GameObject _aimingCamera;
+    [SerializeField] private GameObject _onChairCamera;
     [SerializeField] private HandHolder _myRightHand;
     [SerializeField] private MouseLook _mouseLookCs;
-    [SerializeField] private PlayerInventory _playerInventory;
 
     private CharacterController _characterController;
+    private PlayerInventory _playerInventory;
     private Animator _animator;
     private Vector3 _movementInput;
     private Vector3 _verticalVelocity;

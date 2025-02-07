@@ -11,6 +11,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource subtitleSource;
     [SerializeField] AudioSource ambianceSource;
 
+    public enum SoundTypes
+    {
+        Ambiance,
+        Music,
+        Sfx,
+        Dialouge
+    }
+    public SoundTypes soundType;
+
     private void Awake()
     {
         if (AudioInstance is null)
@@ -28,22 +37,21 @@ public class AudioManager : MonoBehaviour
     {
 
     }
-    public void PlayAmbiance(AudioClip musicClip, bool isLooped)
+    public void PlayAmbiance(AudioClip musicClip)
     {
-        if (isLooped)
-        {
-            musicSource.clip = musicClip;
-            musicSource.loop = true;
-            musicSource.Play();
-        }
-        else
-        {
-            musicSource.PlayOneShot(musicClip);
-        }
+        musicSource.clip = musicClip;
+        musicSource.loop = true;
+
+        musicSource.Play();
     }
 
     public void PlaySubtitle(AudioClip subtitleSpeech)
     {
         subtitleSource.PlayOneShot(subtitleSpeech);
+    }
+
+    public void StopSound(SoundTypes whichSound)
+    {
+
     }
 }

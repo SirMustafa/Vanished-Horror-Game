@@ -29,7 +29,7 @@ public class Bed : MonoBehaviour, IInteractable
         throw new System.NotImplementedException();
     }
 
-    public void Interract()
+    public void MyInterract()
     {
         if (isOpened)
         {

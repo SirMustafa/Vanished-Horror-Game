@@ -24,7 +24,7 @@ public class Picture : MonoBehaviour, IInteractable
         throw new System.NotImplementedException();
     }
 
-    public void Interract()
+    public void MyInterract()
     {
         
     }

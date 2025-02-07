@@ -24,7 +24,7 @@ public class Printer : MonoBehaviour, IInteractable
         throw new System.NotImplementedException();
     }
 
-    public void Interract()
+    public void MyInterract()
     {
         
     }

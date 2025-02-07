@@ -27,7 +27,7 @@ public class Cam : MonoBehaviour, IInteractable
         throw new System.NotImplementedException();
     }
 
-    public void Interract()
+    public void MyInterract()
     {
         EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.OnCamera);
         EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.OnCameraState);
