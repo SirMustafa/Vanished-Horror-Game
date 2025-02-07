@@ -1,90 +1,125 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] private List<ItemFrame> frames = new List<ItemFrame>();
-    [SerializeField] private List<IInteractable> items = new List<IInteractable>(5);
-    [SerializeField] private Transform itemSelector;
+    [SerializeField] private List<ItemFrame> _frames = new List<ItemFrame>();
+    [SerializeField] private HandHolder _handHolder;
+    [SerializeField] private InteractionHandler _interactHandler;
 
-    private ItemFrame currentFrame;
-    private int currentIndex = 0;
-    private const int MaxInventorySize = 5;
+    private Dictionary<int, IInteractable> _inventorySlots = new Dictionary<int, IInteractable>();
+    private ItemFrame _currentFrame;
+    private int _currentIndex = 0;
+    private const int _maxInventorySize = 5;
 
     private void OnEnable()
     {
         EventBus.CameraEvents.OnScroll += OnScroll;
+        EventBus.InteractionEvents.OnDrop += RemoveInventory;
     }
 
     private void Start()
     {
-        SetCurrentFrame(currentIndex);
+        SetCurrentFrame(_currentIndex);
+        EquipCurrentFrameItem();
     }
 
-    public bool AddToInventory(IInteractable obj)
+    public void AddToInventory(IInteractable obj)
     {
-        if (items.Count >= MaxInventorySize)
+        if (_inventorySlots.Count >= _maxInventorySize && !_inventorySlots.ContainsKey(_currentIndex))
         {
-            return false;
+            return;
         }
 
-        items.Add(obj);
+        _inventorySlots[_currentIndex] = obj;
+
+        GameObject itemGO = obj.GetGameObject();
+        if (itemGO != null)
+        {
+            Rigidbody rb = itemGO.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
+            itemGO.SetActive(false);
+        }
+
         UpdateUI();
-        return true;
+        EquipCurrentFrameItem();
+    }
+
+    private void RemoveInventory()
+    {
+        if (_inventorySlots.ContainsKey(_currentIndex))
+        {
+            _inventorySlots.Remove(_currentIndex);
+            UpdateUI();
+        }
+
+        _handHolder.DropObject();
     }
 
     private void UpdateUI()
     {
-        for (int i = 0; i < frames.Count; i++)
+        for (int i = 0; i < _frames.Count; i++)
         {
-            if (i < items.Count)
+            if (_inventorySlots.ContainsKey(i))
             {
-                Sprite itemSprite = items[i].GetSprite();
-                frames[i].SetItem(itemSprite);
+                Sprite itemSprite = _inventorySlots[i].GetSprite();
+                _frames[i].SetItem(itemSprite);
             }
             else
             {
-                frames[i].ClearItem();
+                _frames[i].ClearItem();
             }
         }
-    }
-
-    public bool IsInventoryFull()
-    {
-        return items.Count >= MaxInventorySize;
     }
 
     private void OnScroll(float scrollValue)
     {
-        if (scrollValue < 0 && currentIndex < frames.Count - 1)
+        if (scrollValue < 0 && _currentIndex < _frames.Count - 1)
         {
-            currentIndex++;
-            SetCurrentFrame(currentIndex);
+            _currentIndex++;
+            SetCurrentFrame(_currentIndex);
         }
-        else if (scrollValue > 0 && currentIndex > 0)
+        else if (scrollValue > 0 && _currentIndex > 0)
         {
-            currentIndex--;
-            SetCurrentFrame(currentIndex);
+            _currentIndex--;
+            SetCurrentFrame(_currentIndex);
         }
+        EquipCurrentFrameItem();
     }
 
     private void SetCurrentFrame(int whichFrame)
     {
-        if (currentFrame != null)
+        if (_currentFrame != null)
         {
-            currentFrame.Deselect();
+            _currentFrame.Deselect();
         }
+        _currentFrame = _frames[whichFrame];
+        EventBus.InputEvents.TriggerFrameChangeEvent(_currentFrame.transform.position.x);
+        _currentFrame.Select();
+    }
 
-        currentFrame = frames[whichFrame];
-        itemSelector.SetParent(currentFrame.transform);
-        itemSelector.localPosition = Vector2.zero;
-
-        currentFrame.Select();
+    private void EquipCurrentFrameItem()
+    {
+        if (_inventorySlots.ContainsKey(_currentIndex))
+        {
+            IInteractable currentItem = _inventorySlots[_currentIndex];
+            _interactHandler.SetHandObject(currentItem);
+            _handHolder.AttachToHand(currentItem.GetGameObject());
+        }
+        else
+        {
+            _handHolder.DetachFromHand();
+        }
     }
 
     private void OnDisable()
     {
         EventBus.CameraEvents.OnScroll -= OnScroll;
+        EventBus.InteractionEvents.OnDrop -= RemoveInventory;
     }
 }

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Dart : MonoBehaviour, IInteractable
 {
+    [SerializeField] private Sprite mySprite;
     public bool CanBePickedUp()
     {
         return true;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return this.gameObject;
     }
 
     public Transform GetInteractionTarget()
@@ -16,11 +22,11 @@ public class Dart : MonoBehaviour, IInteractable
 
     public Sprite GetSprite()
     {
-        throw new System.NotImplementedException();
+        return mySprite;
     }
 
-    public void MyInterract()
+    public void Interract()
     {
-        
+        Debug.Log("babucuk");
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23959900284011272}
   - component: {fileID: 64312728653934758}
   - component: {fileID: 6193224442718249971}
+  - component: {fileID: 2279596946526717011}
   m_Layer: 6
   m_Name: SM_Item_Flask_Mug_01
   m_TagString: Untagged
@@ -125,3 +126,31 @@ MonoBehaviour:
   dropMeEvent:
     m_PersistentCalls:
       m_Calls: []
+  mySprite: {fileID: 21300000, guid: 8f7b84018f2226441ba17f1504bb6313, type: 3}
+--- !u!54 &2279596946526717011
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257886164879450}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

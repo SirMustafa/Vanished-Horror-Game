@@ -21,7 +21,7 @@ public class Chair : MonoBehaviour, IInteractable
         _chairPosition = transform.position + new Vector3(-1f, 0f, 0f);
     }
 
-    public void MyInterract()
+    public void Interract()
     {
         _inputs.SwitchActionMap(Inputs.ActionMap.OnChair);
         _player.SitChair(_chairPosition);
@@ -38,6 +38,11 @@ public class Chair : MonoBehaviour, IInteractable
     }
 
     public Sprite GetSprite()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameObject GetGameObject()
     {
         throw new NotImplementedException();
     }

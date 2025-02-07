@@ -7,32 +7,24 @@ public class ItemFrame : MonoBehaviour
 {
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color defaultColor;
-    [SerializeField] private Image itemImage;
-
+    private Image itemImage;
     private Image myImageComponent;
 
     private void Awake()
     {
         myImageComponent = GetComponent<Image>();
+        itemImage = transform.GetChild(0).GetComponent<Image>();
         ClearItem();
     }
 
     public void SetItem(Sprite itemSprite)
     {
-        if (itemImage != null)
-        {
-            itemImage.sprite = itemSprite;
-            itemImage.enabled = true;
-        }
+        itemImage.sprite = itemSprite;
     }
 
     public void ClearItem()
     {
-        if (itemImage != null)
-        {
-            itemImage.sprite = null;
-            itemImage.enabled = false;
-        }
+        itemImage.sprite = null;
     }
 
     public void Select()

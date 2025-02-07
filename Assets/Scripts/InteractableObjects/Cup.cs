@@ -1,40 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Cup : MonoBehaviour, IInteractable
 {
-    [SerializeField] private UnityEvent<GameObject> pickMeEvent;
-    [SerializeField] private UnityEvent dropMeEvent;
     [SerializeField] private Sprite mySprite;
-    Rigidbody body;
-    bool isPicked;
-
-    private void Awake()
+    public void Interract()
     {
-        body = GetComponent<Rigidbody>();
-    }
-    public void MyInterract()
-    {
-        if (!isPicked)
-        {
-            isPicked = true;
-            body.isKinematic = true;
-            PickMeUp();
-        }
-        else
-        {
-            isPicked = false;
-            body.isKinematic = false;
-            dropMeEvent.Invoke();
-        }
-    }
-
-    public void PickMeUp()
-    {
-        pickMeEvent.Invoke(this.gameObject);
+        Debug.Log("amcuk");
     }
 
     public bool CanBePickedUp()
@@ -50,5 +23,10 @@ public class Cup : MonoBehaviour, IInteractable
     public Sprite GetSprite()
     {
         return mySprite;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return this.gameObject;
     }
 }

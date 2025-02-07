@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,8 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private Transform _handikTarget;
     [SerializeField] private GameObject _aimingCamera;
-    [SerializeField] private HandHolder _myRightHand;  
+    [SerializeField] private HandHolder _myRightHand;
     [SerializeField] private MouseLook _mouseLookCs;
+    [SerializeField] private PlayerInventory _playerInventory;
 
     private CharacterController _characterController;
     private Animator _animator;
@@ -23,6 +25,12 @@ public class PlayerController : MonoBehaviour
     private bool _isSitting = false;
     private static readonly int _VelocityXHash = Animator.StringToHash("VelocityX");
     private static readonly int _VelocityZHash = Animator.StringToHash("VelocityZ");
+
+    [Inject]
+    void InjectDependencies(PlayerInventory playerýnventory)
+    {
+        _playerInventory = playerýnventory;
+    }
 
     private void Awake()
     {
@@ -91,16 +99,17 @@ public class PlayerController : MonoBehaviour
         _currentSpeed = isSprinting ? _runSpeed : _walkSpeed;
     }
 
-    public void HandlePickAnimation(GameObject whichObject)
+    public void HandlePickAnimation(IInteractable obj)
     {
-        _animator.SetBool("isPickingUp", true);
-        StartCoroutine(CallHandHolder(whichObject));
+        _handikTarget.position = obj.GetInteractionTarget().position;
+        _handikTarget.rotation = obj.GetInteractionTarget().rotation;
+        _animator.SetTrigger("isPickingUp");
+        StartCoroutine(deleteObjFromScene(obj));
     }
-
-    IEnumerator CallHandHolder(GameObject myObject)
+    IEnumerator deleteObjFromScene(IInteractable obje)
     {
         yield return new WaitForSeconds(0.5f);
-        _myRightHand.AttachToHand(myObject);
+        _playerInventory.AddToInventory(obje);
     }
 
     private void UpdateAnimatorParameters()
@@ -110,12 +119,6 @@ public class PlayerController : MonoBehaviour
 
         _animator.SetFloat(_VelocityXHash, velocityX, 0.1f, Time.deltaTime);
         _animator.SetFloat(_VelocityZHash, velocityZ, 0.1f, Time.deltaTime);
-    }
-    public void PickingAnimation(Transform pickObjTransform)
-    {
-        _handikTarget.position = pickObjTransform.position;
-        _handikTarget.rotation = pickObjTransform.rotation;
-        _animator.SetTrigger("isPickingUp");
     }
 
     private void OnDisable()

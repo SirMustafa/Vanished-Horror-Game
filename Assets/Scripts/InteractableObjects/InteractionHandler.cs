@@ -12,15 +12,13 @@ public class InteractionHandler : MonoBehaviour
     private IInteractable _handInteractable;
     private PlayerUiManager _uiManager;
     private PlayerController _playerController;
-    private PlayerInventory _playerInventory;
     private bool _isInteracting;
 
     [Inject]
-    void InjectDependencies(PlayerUiManager uiManager, PlayerController player, PlayerInventory playerýnventory)
+    void InjectDependencies(PlayerUiManager uiManager, PlayerController player)
     {
         _uiManager = uiManager;
         _playerController = player;
-        _playerInventory = playerýnventory;
     }
 
     private void OnEnable()
@@ -55,10 +53,7 @@ public class InteractionHandler : MonoBehaviour
 
     public void SetHandObject(IInteractable handObject)
     {
-        if (_handInteractable is null)
-        {
-            _handInteractable = handObject;
-        }
+        _handInteractable = handObject;
     }
 
     public void DropObject()
@@ -70,7 +65,7 @@ public class InteractionHandler : MonoBehaviour
     {
         if (_handInteractable is not null)
         {
-            _handInteractable.MyInterract();
+            _handInteractable.Interract();
             return;
         }
 
@@ -78,12 +73,11 @@ public class InteractionHandler : MonoBehaviour
         {
             if (_currentInteractable.CanBePickedUp())
             {
-                _playerController.PickingAnimation(_currentInteractable.GetInteractionTarget());
-                _playerInventory.AddToInventory(_currentInteractable);
+                _playerController.HandlePickAnimation(_currentInteractable);
             }
             else
             {
-                _currentInteractable.MyInterract();
+                _currentInteractable.Interract();
             }
         }
     }

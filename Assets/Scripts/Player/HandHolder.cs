@@ -5,23 +5,45 @@ using UnityEngine;
 public class HandHolder : MonoBehaviour
 {
     [SerializeField] InteractionHandler _interactionHandler;
-    Transform objestTransform;
-    
+    private Transform objectTransform;
+
     public void AttachToHand(GameObject pickedObject)
     {
-        objestTransform = pickedObject.transform;
-        objestTransform.transform.SetParent(transform);
-        objestTransform.transform.localPosition = Vector3.zero;
-        objestTransform.transform.localRotation = Quaternion.identity;
+        if (pickedObject is null) return;
+
+        pickedObject.SetActive(true);
+        objectTransform = pickedObject.transform;
+        objectTransform.SetParent(transform);
+        objectTransform.localPosition = Vector3.zero;
+        //objectTransform.localRotation = Quaternion.identity;
     }
-    public void LeaveHand()
+
+    public void DetachFromHand()
     {
-        if (objestTransform != null) 
+        if (objectTransform is not null)
         {
-            _interactionHandler.DropObject();
-            objestTransform.parent = null;
-            objestTransform = null;
+            objectTransform.gameObject.SetActive(false);
+            objectTransform = null;
         }
-        
+    }
+
+
+    public void DropObject()
+    {
+        if (objectTransform is not null)
+        {
+
+            GameObject droppedObject = objectTransform.gameObject;
+            Rigidbody rb = droppedObject.GetComponent<Rigidbody>();
+
+            if (rb is not null)
+            {
+                rb.isKinematic = false;
+                rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
+            }
+
+            droppedObject.transform.SetParent(null);
+            objectTransform = null;
+        }
     }
 }

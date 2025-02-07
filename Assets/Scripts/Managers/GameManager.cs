@@ -89,14 +89,14 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (CurrentGameState == GameState.PauseState)
-        {
-            ChangeGameState(_gameStateStack.Pop());
-        }
-        else
-        {
-            ChangeGameState(GameState.PauseState);
-        }
+        //if (CurrentGameState == GameState.PauseState)
+        //{
+        //    ChangeGameState(_gameStateStack.Pop());
+        //}
+        //else
+        //{
+        //    ChangeGameState(GameState.PauseState);
+        //}
     }
 
     private void OnDisable()

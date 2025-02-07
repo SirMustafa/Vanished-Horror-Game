@@ -39,10 +39,12 @@ public static class EventBus
     {
         public static event Action<GameManager.GameState> OnGameStateChange;
         public static event Action<Inputs.ActionMap> OnActionMapChange;
+        public static event Action<float> OnFrameChange;
 
         public static void TriggerGameStateChange(GameManager.GameState currentState)
             => OnGameStateChange?.Invoke(currentState);
         public static void TriggerActionMapChange(Inputs.ActionMap actionMap)
             => OnActionMapChange?.Invoke(actionMap);
+        public static void TriggerFrameChangeEvent(float position) => OnFrameChange?.Invoke(position);
     }
 }

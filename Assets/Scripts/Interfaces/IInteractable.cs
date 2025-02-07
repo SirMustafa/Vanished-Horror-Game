@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void MyInterract();
+    void Interract();
     bool CanBePickedUp();
     Transform GetInteractionTarget();
     Sprite GetSprite();
+    GameObject GetGameObject();
 }

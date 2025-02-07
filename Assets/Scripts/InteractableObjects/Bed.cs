@@ -14,6 +14,11 @@ public class Bed : MonoBehaviour, IInteractable
         return false;
     }
 
+    public GameObject GetGameObject()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public Transform GetInteractionTarget()
     {
         return this.transform;
@@ -24,7 +29,7 @@ public class Bed : MonoBehaviour, IInteractable
         throw new System.NotImplementedException();
     }
 
-    public void MyInterract()
+    public void Interract()
     {
         if (isOpened)
         {
