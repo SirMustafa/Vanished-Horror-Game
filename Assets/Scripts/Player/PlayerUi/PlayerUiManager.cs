@@ -21,9 +21,9 @@ public class PlayerUiManager : MonoBehaviour
         CinematicPanel,
         PausePanel,
         OnCameraPanel,
-        None,
+        OnChairPanel,
     }
-    public UiPanels CurrentPanel { get; private set; } = UiPanels.None;
+    public UiPanels CurrentPanel { get; private set; } = UiPanels.OnChairPanel;
 
     private void OnEnable()
     {

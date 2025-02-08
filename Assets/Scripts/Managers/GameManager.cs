@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         CinematicState,
         PauseState,
         OnCameraState,
-        None,
+        OnChair,
     }
 
     public GameState CurrentGameState { get; private set; }
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         { GameState.CinematicState, PlayerUiManager.UiPanels.CinematicPanel },
         { GameState.PauseState, PlayerUiManager.UiPanels.PausePanel },
         { GameState.OnCameraState, PlayerUiManager.UiPanels.OnCameraPanel },
-        { GameState.None, PlayerUiManager.UiPanels.None }
+        { GameState.OnChair, PlayerUiManager.UiPanels.OnChairPanel }
     };
 
     [Inject]

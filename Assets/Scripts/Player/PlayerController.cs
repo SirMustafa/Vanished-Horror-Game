@@ -13,14 +13,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _handikTarget;
     [SerializeField] private GameObject _aimingCamera;
     [SerializeField] private GameObject _onChairCamera;
-    [SerializeField] private HandHolder _myRightHand;
     [SerializeField] private MouseLook _mouseLookCs;
 
+    private InteractionHandler _interactionHandler;
     private CharacterController _characterController;
     private PlayerInventory _playerInventory;
     private Animator _animator;
     private Vector3 _movementInput;
     private Vector3 _verticalVelocity;
+    private Vector3 _sittingPosition;
     private float _currentSpeed;
     private bool _isGrounded;
     private bool _isSitting = false;
@@ -28,9 +29,10 @@ public class PlayerController : MonoBehaviour
     private static readonly int _VelocityZHash = Animator.StringToHash("VelocityZ");
 
     [Inject]
-    void InjectDependencies(PlayerInventory playerýnventory)
+    void InjectDependencies(PlayerInventory playerýnventory, InteractionHandler interact)
     {
         _playerInventory = playerýnventory;
+        _interactionHandler = interact;
     }
 
     private void Awake()
@@ -66,12 +68,28 @@ public class PlayerController : MonoBehaviour
         UpdateAnimatorParameters();
     }
 
-    public void SitChair(Vector3 chairPosition)
+    public void SitChair(Vector3 chairPosition, IInteractable chair)
     {
         if (!_isSitting)
         {
             _isSitting = true;
-
+            _sittingPosition = transform.position;
+            _characterController.enabled = false;
+            EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.OnChair);
+            EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.OnChair);
+            _interactionHandler.SetHandObject(chair);
+            this.transform.position = chairPosition;
+            _animator.SetBool("isSitting", true);
+        }
+        else
+        {
+            _isSitting = false;
+            EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.Player);
+            EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.PlayState);
+            _interactionHandler.DropObject();
+            this.transform.position = _sittingPosition;
+            _animator.SetBool("isSitting", false);
+            _characterController.enabled = true;
         }
     }
 

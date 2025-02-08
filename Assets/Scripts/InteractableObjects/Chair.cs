@@ -16,15 +16,10 @@ public class Chair : MonoBehaviour, IInteractable
         _inputs = inputs;
         _player = player;
     }
-    private void Start()
-    {
-        _chairPosition = transform.position + new Vector3(-1f, 0f, 0f);
-    }
 
     public void MyInterract()
     {
-        EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.OnChair);
-        _player.SitChair(_chairPosition);
+        _player.SitChair(_chairPosition, this);
     }
 
     public bool CanBePickedUp()

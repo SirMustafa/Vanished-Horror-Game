@@ -14,9 +14,12 @@ public class ItemFrame : MonoBehaviour
     {
         myImageComponent = GetComponent<Image>();
         itemImage = transform.GetChild(0).GetComponent<Image>();
-        ClearItem();
     }
 
+    private void Start()
+    {
+        ClearItem();
+    }
     public void SetItem(Sprite itemSprite)
     {
         itemImage.sprite = itemSprite;

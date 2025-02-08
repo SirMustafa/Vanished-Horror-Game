@@ -10,5 +10,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<PlayerUiManager>().FromComponentInHierarchy().AsSingle();  
         Container.Bind<PlayerInventory>().FromComponentInHierarchy().AsSingle();  
         Container.Bind<QuestManager>().FromComponentInHierarchy().AsSingle();  
+        Container.Bind<InteractionHandler>().FromComponentInHierarchy().AsSingle();  
     }
 }
