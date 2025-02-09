@@ -6,7 +6,7 @@ using Zenject;
 
 public class Chair : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Vector3 _chairPosition;
+    [SerializeField] private Transform _chairPosition;
     private Inputs _inputs;
     private PlayerController _player;
     
@@ -19,7 +19,7 @@ public class Chair : MonoBehaviour, IInteractable
 
     public void MyInterract()
     {
-        _player.SitChair(_chairPosition, this);
+        _player.SitChair(_chairPosition.position, this);
     }
 
     public bool CanBePickedUp()

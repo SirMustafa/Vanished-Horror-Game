@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = transform.TransformDirection(_movementInput) * _currentSpeed;
         movement.y = _verticalVelocity.y;
-        _characterController.Move(movement * Time.deltaTime);
 
+        _characterController.Move(movement * Time.deltaTime);
         UpdateAnimatorParameters();
     }
 
