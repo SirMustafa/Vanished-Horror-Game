@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     {
         SubtitleState,
         PlayState,
-        TabState,
+        TaskState,
         CinematicState,
         PauseState,
         OnCameraState,
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         { GameState.SubtitleState, PlayerUiManager.UiPanels.SubtitlePanel },
         { GameState.PlayState, PlayerUiManager.UiPanels.GamePlayPanel },
-        { GameState.TabState, PlayerUiManager.UiPanels.TabPanel },
+        { GameState.TaskState, PlayerUiManager.UiPanels.TaskPanel },
         { GameState.CinematicState, PlayerUiManager.UiPanels.CinematicPanel },
         { GameState.PauseState, PlayerUiManager.UiPanels.PausePanel },
         { GameState.OnCameraState, PlayerUiManager.UiPanels.OnCameraPanel },
@@ -89,14 +89,15 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        //if (CurrentGameState == GameState.PauseState)
-        //{
-        //    ChangeGameState(_gameStateStack.Pop());
-        //}
-        //else
-        //{
-        //    ChangeGameState(GameState.PauseState);
-        //}
+        if(_isTesting) return;
+        if (CurrentGameState == GameState.PauseState)
+        {
+            ChangeGameState(_gameStateStack.Pop());
+        }
+        else
+        {
+            ChangeGameState(GameState.PauseState);
+        }
     }
 
     private void OnDisable()

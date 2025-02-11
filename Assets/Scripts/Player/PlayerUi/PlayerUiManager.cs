@@ -17,7 +17,7 @@ public class PlayerUiManager : MonoBehaviour
     {
         SubtitlePanel,
         GamePlayPanel,
-        TabPanel,
+        TaskPanel,
         CinematicPanel,
         PausePanel,
         OnCameraPanel,
