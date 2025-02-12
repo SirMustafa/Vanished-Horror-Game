@@ -26,6 +26,6 @@ public class ClipBoard : MonoBehaviour, IInteractable
 
     public void MyInterract()
     {
-        throw new System.NotImplementedException();
+        EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.PauseState);
     }
 }
