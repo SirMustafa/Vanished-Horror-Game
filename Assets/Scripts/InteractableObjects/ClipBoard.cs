@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Picture : MonoBehaviour, IInteractable
+public class ClipBoard : MonoBehaviour, IInteractable
 {
     public bool CanBePickedUp()
     {
-        return true;
+        return false;
     }
 
     public GameObject GetGameObject()
     {
-        throw new System.NotImplementedException();
+        return this.gameObject;
     }
 
     public Transform GetInteractionTarget()
@@ -26,6 +26,6 @@ public class Picture : MonoBehaviour, IInteractable
 
     public void MyInterract()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

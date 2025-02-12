@@ -59,6 +59,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         _handHolder.DropObject();
+        _interactHandler.DropObject();
     }
 
     private void UpdateUI()
