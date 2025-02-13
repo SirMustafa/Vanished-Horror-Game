@@ -7,7 +7,7 @@ public class Cup : MonoBehaviour, IInteractable
     [SerializeField] private Sprite mySprite;
     public void MyInterract()
     {
-        Debug.Log("amcuk");
+        Debug.Log("here");
     }
 
     public bool CanBePickedUp()

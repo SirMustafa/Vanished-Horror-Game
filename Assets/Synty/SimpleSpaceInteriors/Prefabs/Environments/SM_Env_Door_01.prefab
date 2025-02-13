@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2309096}
   - component: {fileID: 8500470211536534155}
   - component: {fileID: 4506095863802741377}
+  - component: {fileID: 2744732887357778599}
   m_Layer: 6
   m_Name: SM_Env_Door_01
   m_TagString: Untagged
@@ -122,3 +123,13 @@ MonoBehaviour:
   _rotationDuration: 0.5
   _isCinematic: 0
   doorTask: {fileID: 11400000, guid: cce29eb5ad2a5164cb7893fa3db0e86e, type: 2}
+--- !u!41 &2744732887357778599
+OcclusionPortal:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144416}
+  m_Open: 0
+  m_Center: {x: -1.0919863, y: 2.242919, z: 0}
+  m_Size: {x: 3.183973, y: 3.298936, z: 1.5108004}
