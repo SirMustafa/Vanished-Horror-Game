@@ -14,7 +14,8 @@ public class Inputs : MonoBehaviour
     {
         Player,
         OnChair,
-        OnCamera
+        OnCamera,
+        OnPause
     }
     private void OnEnable()
     {
@@ -72,8 +73,7 @@ public class Inputs : MonoBehaviour
 
         isGamePaused = !isGamePaused;
         OnEscBtn?.Invoke();
-
-        playerInput.SwitchCurrentActionMap(isGamePaused ? "OnPause" : "Player");
+        SwitchActionMap(isGamePaused ? ActionMap.OnPause : ActionMap.Player);
     }
 
     public void OnSprint(InputAction.CallbackContext context)
