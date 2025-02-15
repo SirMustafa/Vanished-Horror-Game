@@ -42,15 +42,12 @@ public class QuestManager : MonoBehaviour
         if (currentTask.isJustSubtitle)
         {
             CompleteCurrentQuest();
-        } 
+        }
     }
 
     private void CompleteCurrentQuest()
     {
-        if (currentTask != null)
-        {
-            tasksQue.RemoveAt(0);
-        }
+        tasksQue.RemoveAt(0);
 
         if (tasksQue.Count > 0)
         {

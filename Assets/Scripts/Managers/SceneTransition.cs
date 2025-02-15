@@ -10,14 +10,11 @@ public class SceneTransition : MonoBehaviour
 
     private void Awake()
     {
-        if (Sceneinstance != null && Sceneinstance != this)
+        if (Sceneinstance is null)
         {
-            Destroy(gameObject);
-            return;
+            Sceneinstance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        Sceneinstance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void NextLevel(int whichLevel)

@@ -20,4 +20,8 @@ public class Cinematic0Manager : MonoBehaviour
         _theDoors[_doorIndex].MyInterract();
         _doorIndex++;
     }
+    public void EndOftheCinematic()
+    {
+        SceneTransition.Sceneinstance.NextLevel(2);
+    }
 }
