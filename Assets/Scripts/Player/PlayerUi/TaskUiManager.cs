@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class TaskUiManager : MonoBehaviour
 {
+    [SerializeField] private QuestManager questManager;
+    public void OnQuestButtonPressed(QuestInfoSO quest)
+    {
+        questManager.SetStartQuest(quest);
+    }
+
     public void OnExit(InputAction.CallbackContext context)
     {
         EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.Player);

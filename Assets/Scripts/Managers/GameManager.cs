@@ -55,12 +55,14 @@ public class GameManager : MonoBehaviour
         ChangeGameState(GameState.PlayState);
         if (_isTesting) return;
         Invoke("StartQuestCycle", 1f);
+        Debug.Log("subtitle görevi ayarlancak");
     }
 
     private void StartQuestCycle()
     {
-        _taskManager.StartQuest();
+        //_taskManager.SetStartQuest();
     }
+
     private void ChangeGameState(GameState newState)
     {
         if (CurrentGameState == newState) return;
