@@ -10,6 +10,8 @@ public class Doors : MonoBehaviour, IInteractable
     [SerializeField] private QuestInfoSO doorTask;
     private OcclusionPortal _occlusionPortal;
     private bool _isOpen = false;
+    private bool _isMoving;
+
     private void Awake()
     {
         _occlusionPortal = GetComponent<OcclusionPortal>();
@@ -36,18 +38,21 @@ public class Doors : MonoBehaviour, IInteractable
 
     public void MyInterract()
     {
-        if (_isOpen)
-        {
-            _isOpen = false;
-            transform.DORotate(transform.eulerAngles + new Vector3(0, -90, 0), _rotationDuration);
-            _occlusionPortal.open = false;
-        }
-        else
-        {
-            _isOpen = true;
-            transform.DORotate(transform.eulerAngles + new Vector3(0, 90, 0), _rotationDuration);
-            if(!_isCinematic) doorTask.CompleteTask();
-            _occlusionPortal.open = true;
-        }
+        if (_isMoving) return;
+
+        _isMoving = true;
+
+        Vector3 targetRotation = _isOpen
+            ? transform.eulerAngles + new Vector3(0, -90, 0)
+            : transform.eulerAngles + new Vector3(0, 90, 0);
+
+        transform.DORotate(targetRotation, _rotationDuration)
+            .OnComplete(() => _isMoving = false);
+
+        _isOpen = !_isOpen;
+        _occlusionPortal.open = _isOpen;
+
+        if (!_isCinematic && _isOpen)
+            doorTask.CompleteTask();
     }
 }

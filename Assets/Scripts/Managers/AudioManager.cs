@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource sfxSource;
     [SerializeField] AudioSource subtitleSource;
     [SerializeField] AudioSource ambianceSource;
+    [SerializeField] AudioMixer audioMixer;
 
     public enum SoundTypes
     {
@@ -39,10 +41,10 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayAmbiance(AudioClip musicClip)
     {
-        musicSource.clip = musicClip;
-        musicSource.loop = true;
+        ambianceSource.clip = musicClip;
+        ambianceSource.loop = true;
 
-        musicSource.Play();
+        ambianceSource.Play();
     }
 
     public void PlaySubtitle(AudioClip subtitleSpeech)
@@ -53,5 +55,13 @@ public class AudioManager : MonoBehaviour
     public void StopSound(SoundTypes whichSound)
     {
 
+    }
+    public void SetMusicVolume(float volumeAmount)
+    {
+        audioMixer.SetFloat("MusicVolume", volumeAmount);
+    }
+    public void SetSfxVolume(float volumeAmount)
+    {
+        audioMixer.SetFloat("SFXVolume", volumeAmount);
     }
 }

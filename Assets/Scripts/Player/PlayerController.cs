@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 _verticalVelocity;
     private Vector3 _sittingPosition;
     private float _currentSpeed;
-    private bool _isGrounded;
     private bool _isSitting = false;
     private static readonly int _VelocityXHash = Animator.StringToHash("VelocityX");
     private static readonly int _VelocityZHash = Animator.StringToHash("VelocityZ");
@@ -44,16 +43,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         EventBus.PlayerEvents.OnMove += HandleMovement;
-        EventBus.PlayerEvents.OnJump += HandleJump;
         EventBus.PlayerEvents.OnSprint += HandleSprint;
         EventBus.CameraEvents.OnAiming += HandleAiming;
     }
 
     private void Update()
     {
-        _isGrounded = _characterController.isGrounded;
-
-        if (_isGrounded && _verticalVelocity.y < 0)
+        if (_verticalVelocity.y < 0)
         {
             _verticalVelocity.y = -2f;
         }
@@ -100,15 +96,6 @@ public class PlayerController : MonoBehaviour
         _movementInput = new Vector3(input.x, 0, input.y);
     }
 
-    private void HandleJump()
-    {
-        if (_isGrounded)
-        {
-            _animator.SetTrigger("isJumping");
-            _verticalVelocity.y = Mathf.Sqrt(_jumpForce * -2f * _gravity);
-        }
-    }
-
     private void HandleAiming(bool isAiming)
     {
         _aimingCamera.SetActive(isAiming);
@@ -145,7 +132,6 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         EventBus.PlayerEvents.OnMove -= HandleMovement;
-        EventBus.PlayerEvents.OnJump -= HandleJump;
         EventBus.PlayerEvents.OnSprint -= HandleSprint;
         EventBus.CameraEvents.OnAiming -= HandleAiming;
     }

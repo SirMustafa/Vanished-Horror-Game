@@ -52,6 +52,7 @@ MonoBehaviour:
   sfxSource: {fileID: 5833497584172982364}
   subtitleSource: {fileID: 4716500064373527946}
   ambianceSource: {fileID: 4426992504067750347}
+  audioMixer: {fileID: 24100000, guid: d7d6c84a82cc36342aed8f1b328402c9, type: 2}
   soundType: 0
 --- !u!82 &7042748714765127693
 AudioSource:

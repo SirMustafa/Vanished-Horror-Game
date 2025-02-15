@@ -91,4 +91,8 @@ public class PlayerUiManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void OptionsPanel()
+    {
+        Application.Quit();
+    }
 }

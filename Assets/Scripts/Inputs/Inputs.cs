@@ -15,7 +15,8 @@ public class Inputs : MonoBehaviour
         Player,
         OnChair,
         OnCamera,
-        OnPause
+        OnPause,
+        OnTask
     }
     private void OnEnable()
     {
@@ -31,14 +32,6 @@ public class Inputs : MonoBehaviour
     {
         Vector2 input = context.ReadValue<Vector2>();
         EventBus.PlayerEvents.TriggerMove(input);
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            EventBus.PlayerEvents.TriggerJump();
-        }
     }
     public void OnInterract(InputAction.CallbackContext context)
     {
@@ -69,11 +62,12 @@ public class Inputs : MonoBehaviour
 
     public void OnEscButton(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-
-        isGamePaused = !isGamePaused;
-        OnEscBtn?.Invoke();
-        SwitchActionMap(isGamePaused ? ActionMap.OnPause : ActionMap.Player);
+        if (context.performed)
+        {
+            isGamePaused = !isGamePaused;
+            OnEscBtn?.Invoke();
+            SwitchActionMap(isGamePaused ? ActionMap.OnPause : ActionMap.Player);
+        }
     }
 
     public void OnSprint(InputAction.CallbackContext context)

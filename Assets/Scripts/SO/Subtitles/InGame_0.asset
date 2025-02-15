@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: InGame_0
   m_EditorClassIdentifier: 
   narratorsSprite: {fileID: 21300000, guid: d192d7a613213c848b37bd54eb881678, type: 3}
-  narratorsClip: {fileID: 8300000, guid: 2892d9711e4f24d4ca84bbd3683c1c96, type: 3}
+  narratorsClip: {fileID: 8300000, guid: 9c513c0a48ef2db439e9738bc5d01b40, type: 3}
   lines:
   - Captain, your mission is to cross the  edge of the universe. Until that moment
     comes,  you must take care of your ship.
-  - 'You can move  around the ship using the WASD keys, jump with  the Space key,
-    focus on objects with the right  mouse button, and interact with them using the 
-    E key. May the stars guide you, Captain. '
+  - 'You can move  around the ship using the WASD keys, focus on objects with the
+    right  mouse button, and interact with them using the  E key. May the stars guide
+    you, Captain. '
