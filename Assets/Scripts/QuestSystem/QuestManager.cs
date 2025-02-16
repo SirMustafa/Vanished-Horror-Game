@@ -26,12 +26,14 @@ public class QuestManager : MonoBehaviour
             _playerUi.SetMissionText(currentTask.TaskName);
         }
         currentTask.OnTaskCompleted += CompleteCurrentQuest;
+        Debug.Log("abon");
     }
-
-    
 
     private void CompleteCurrentQuest()
     {
+        currentTask.OnTaskCompleted -= CompleteCurrentQuest;
+        Debug.Log("end");
+
         //tasksQue.RemoveAt(0);
         //
         //if (tasksQue.Count > 0)

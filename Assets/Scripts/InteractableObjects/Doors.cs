@@ -6,8 +6,8 @@ using UnityEngine;
 public class Doors : MonoBehaviour, IInteractable
 {
     [SerializeField] private float _rotationDuration = 0.5f;
-    [SerializeField] bool _isCinematic;
-    [SerializeField] private QuestInfoSO doorTask;
+    [SerializeField] private AudioClip _openSound;
+    [SerializeField] private AudioClip _closeSound;
     private OcclusionPortal _occlusionPortal;
     private bool _isOpen = false;
     private bool _isMoving;
@@ -52,7 +52,7 @@ public class Doors : MonoBehaviour, IInteractable
         _isOpen = !_isOpen;
         _occlusionPortal.open = _isOpen;
 
-        if (!_isCinematic && _isOpen)
-            doorTask.CompleteTask();
+        AudioClip clipToPlay = _isOpen ? _openSound : _closeSound;
+        AudioManager.AudioInstance.PlaySfx(clipToPlay);
     }
 }

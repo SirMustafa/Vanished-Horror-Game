@@ -1976,6 +1976,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5c9ec2fa-f63f-47ce-9a9a-914e37cd9b91
     m_ActionName: 'OnTask/ExitTaskPanel[/Keyboard/e,/XInputControllerWindows/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: OnCameraInputs, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 436cb171-1c12-4f00-a1a5-ad50897d38f0
+    m_ActionName: 'OnCamera/LMB[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3682,7 +3698,7 @@ GameObject:
   - component: {fileID: 6595763678148947140}
   - component: {fileID: 5175590818550599570}
   m_Layer: 0
-  m_Name: Tasks (1)
+  m_Name: WaterPlantTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3705,8 +3721,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59, y: -30}
-  m_SizeDelta: {x: 700, y: 80}
+  m_AnchoredPosition: {x: -180.20624, y: -30}
+  m_SizeDelta: {x: 457.5874, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5454942200604362331
 CanvasRenderer:
@@ -3736,8 +3752,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 524802b6463b8b444bbba7e1b609ee1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3768,8 +3784,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.18609823, g: 0.7735849, b: 0.19713922, a: 1}
-    m_PressedColor: {r: 0.7725491, g: 0.23137257, b: 0.23137257, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.8784314, b: 0.20392157, a: 1}
+    m_PressedColor: {r: 0.99215686, g: 0.56078434, b: 0.21960784, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -4274,8 +4290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -189.30652, y: 0}
-  m_SizeDelta: {x: -419.3351, y: 0}
+  m_AnchoredPosition: {x: -39.818863, y: 0}
+  m_SizeDelta: {x: -120.36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1816442550426345519
 CanvasRenderer:
@@ -5118,10 +5134,10 @@ RectTransform:
   - {fileID: 1319522459364166990}
   m_Father: {fileID: 3462919280641772218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 870, y: 574}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8409969355720439089
 CanvasRenderer:
@@ -5151,8 +5167,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d0c9fef6737cbb549b705eb6747b7d97, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5318,7 +5334,7 @@ RectTransform:
   m_Father: {fileID: 3993706770908056691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5523,8 +5539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59, y: -123}
-  m_SizeDelta: {x: 700, y: 80}
+  m_AnchoredPosition: {x: -180.20624, y: -123.000015}
+  m_SizeDelta: {x: 457.5874, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &776145017791693899
 CanvasRenderer:
@@ -5554,8 +5570,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 524802b6463b8b444bbba7e1b609ee1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5586,8 +5602,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.18609823, g: 0.7735849, b: 0.19713922, a: 1}
-    m_PressedColor: {r: 0.7725491, g: 0.23137257, b: 0.23137257, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.8784314, b: 0.20392157, a: 1}
+    m_PressedColor: {r: 0.99215686, g: 0.56078434, b: 0.21960784, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5632,6 +5648,7 @@ GameObject:
   - component: {fileID: 2253792562656235160}
   - component: {fileID: 168855644098117735}
   - component: {fileID: 7712996721783270480}
+  - component: {fileID: 6137628713127296906}
   m_Layer: 0
   m_Name: MainMenuBtn
   m_TagString: Untagged
@@ -5654,10 +5671,10 @@ RectTransform:
   - {fileID: 4580283249670668951}
   m_Father: {fileID: 6143447723923660266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -416.6667}
+  m_SizeDelta: {x: 198, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2253792562656235160
 CanvasRenderer:
@@ -5687,8 +5704,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1b5d04054f2057d4c90d99442b101d1e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5719,8 +5736,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.21529014, g: 0.7735849, b: 0.2898633, a: 1}
-    m_PressedColor: {r: 0.8301887, g: 0.21537916, b: 0.21537916, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.8784314, b: 0.20392157, a: 1}
+    m_PressedColor: {r: 0.99215686, g: 0.28235295, b: 0.21960784, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5753,6 +5770,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6137628713127296906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078161459985567000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880631611675575823}
+          m_TargetAssemblyTypeName: PlayerUiManager, Assembly-CSharp
+          m_MethodName: BtnSound
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: c25d2ebbdee73b6458ad77319f58f1a6, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880631611675575823}
+          m_TargetAssemblyTypeName: PlayerUiManager, Assembly-CSharp
+          m_MethodName: BtnSound
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 900c560d157cdfc42887d0a817837ccd, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3128567722193954210
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,6 +6217,7 @@ GameObject:
   - component: {fileID: 2628998718169832740}
   - component: {fileID: 4808411997560586472}
   - component: {fileID: 2038081871294515065}
+  - component: {fileID: 3260062434865608828}
   m_Layer: 0
   m_Name: OptionsBtn
   m_TagString: Untagged
@@ -6177,10 +6240,10 @@ RectTransform:
   - {fileID: 7424344080292021645}
   m_Father: {fileID: 6143447723923660266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -83.333336}
+  m_SizeDelta: {x: 198, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2628998718169832740
 CanvasRenderer:
@@ -6210,8 +6273,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1b5d04054f2057d4c90d99442b101d1e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6242,8 +6305,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.21529014, g: 0.7735849, b: 0.2898633, a: 1}
-    m_PressedColor: {r: 0.8301887, g: 0.21537916, b: 0.21537916, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.8784314, b: 0.20392157, a: 1}
+    m_PressedColor: {r: 0.99215686, g: 0.28235295, b: 0.21960784, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -6276,6 +6339,126 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3260062434865608828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495947470167829014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880631611675575823}
+          m_TargetAssemblyTypeName: PlayerUiManager, Assembly-CSharp
+          m_MethodName: BtnSound
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: c25d2ebbdee73b6458ad77319f58f1a6, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880631611675575823}
+          m_TargetAssemblyTypeName: PlayerUiManager, Assembly-CSharp
+          m_MethodName: BtnSound
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 900c560d157cdfc42887d0a817837ccd, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &3518594244366870223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175189807787097483}
+  - component: {fileID: 5258386728730641360}
+  - component: {fileID: 5286903947030201573}
+  m_Layer: 0
+  m_Name: CrossHair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1175189807787097483
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518594244366870223}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7738954234124773393}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00018310547, y: 0.000061035156}
+  m_SizeDelta: {x: 13, y: 13}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5258386728730641360
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518594244366870223}
+  m_CullTransparentMesh: 1
+--- !u!114 &5286903947030201573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518594244366870223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: edd4bb7b6b5224b4a9d04363bb0f6a3d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3522232723640520017
 GameObject:
   m_ObjectHideFlags: 0
@@ -6311,9 +6494,9 @@ RectTransform:
   m_Father: {fileID: 535086322776627738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1353834581359492461
 CanvasRenderer:
@@ -7545,7 +7728,7 @@ GameObject:
   - component: {fileID: 783988898902222735}
   - component: {fileID: 1858417097334928840}
   m_Layer: 0
-  m_Name: ExitTxt
+  m_Name: ShootTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7567,7 +7750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 773, y: -489}
+  m_AnchoredPosition: {x: 750, y: -470}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &783988898902222735
@@ -7598,7 +7781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press [E] to exit
+  m_text: Press [LMB] to shoot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7891,7 +8074,7 @@ GameObject:
   - component: {fileID: 8255272856577375378}
   - component: {fileID: 179018910290473056}
   m_Layer: 0
-  m_Name: Tasks
+  m_Name: OpenDoorTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7914,8 +8097,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59, y: 62}
-  m_SizeDelta: {x: 700, y: 80}
+  m_AnchoredPosition: {x: -180.20624, y: 62}
+  m_SizeDelta: {x: 457.5874, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2631033240298272138
 CanvasRenderer:
@@ -7945,8 +8128,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 524802b6463b8b444bbba7e1b609ee1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7977,8 +8160,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.18609823, g: 0.7735849, b: 0.19713922, a: 1}
-    m_PressedColor: {r: 0.7725491, g: 0.23137257, b: 0.23137257, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.8784314, b: 0.20392157, a: 1}
+    m_PressedColor: {r: 0.99215686, g: 0.56078434, b: 0.21960784, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7999,13 +8182,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 4539347740586966733}
+        m_TargetAssemblyTypeName: TaskUiManager, Assembly-CSharp
+        m_MethodName: OnQuestButtonPressed
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 11400000, guid: cce29eb5ad2a5164cb7893fa3db0e86e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: QuestInfoSO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8321,8 +8504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -189.30652, y: 0}
-  m_SizeDelta: {x: -419.3351, y: 0}
+  m_AnchoredPosition: {x: -39.818863, y: 0}
+  m_SizeDelta: {x: -120.36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7645962232666366582
 CanvasRenderer:
@@ -8737,7 +8920,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 874725121282681819}
   m_HandleRect: {fileID: 6467495435992291338}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8980,6 +9163,7 @@ GameObject:
   - component: {fileID: 9088321221615821625}
   - component: {fileID: 780270055017939232}
   - component: {fileID: 6771286645063648830}
+  - component: {fileID: 4789416899916240473}
   m_Layer: 0
   m_Name: RestartBtn
   m_TagString: Untagged
@@ -9002,10 +9186,10 @@ RectTransform:
   - {fileID: 4109438610454390220}
   m_Father: {fileID: 6143447723923660266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -250}
+  m_SizeDelta: {x: 198, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9088321221615821625
 CanvasRenderer:
@@ -9035,8 +9219,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1b5d04054f2057d4c90d99442b101d1e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9067,8 +9251,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.21529014, g: 0.7735849, b: 0.2898633, a: 1}
-    m_PressedColor: {r: 0.8301887, g: 0.21537916, b: 0.21537916, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.8784314, b: 0.20392157, a: 1}
+    m_PressedColor: {r: 0.99215686, g: 0.28235295, b: 0.21960784, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -9101,6 +9285,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4789416899916240473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7266598070848584846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880631611675575823}
+          m_TargetAssemblyTypeName: PlayerUiManager, Assembly-CSharp
+          m_MethodName: BtnSound
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: c25d2ebbdee73b6458ad77319f58f1a6, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880631611675575823}
+          m_TargetAssemblyTypeName: PlayerUiManager, Assembly-CSharp
+          m_MethodName: BtnSound
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 900c560d157cdfc42887d0a817837ccd, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7356894319105399431
 GameObject:
   m_ObjectHideFlags: 0
@@ -9287,6 +9516,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 341709302233584562}
+  - {fileID: 1175189807787097483}
   m_Father: {fileID: 3462919280641772218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9840,8 +10070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -189.30652, y: 0}
-  m_SizeDelta: {x: -419.3351, y: 0}
+  m_AnchoredPosition: {x: -39.818863, y: 0}
+  m_SizeDelta: {x: -120.36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8507585857266565607
 CanvasRenderer:
@@ -10183,7 +10413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00034433074}
   m_SizeDelta: {x: 0, y: 412.2584}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &8318168405040535035

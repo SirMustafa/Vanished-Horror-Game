@@ -1,3 +1,4 @@
+
 using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private bool _isTesting;
+    [SerializeField] private QuestInfoSO _firstQuest;
+
     public enum GameState
     {
         SubtitleState,
@@ -55,12 +58,11 @@ public class GameManager : MonoBehaviour
         ChangeGameState(GameState.PlayState);
         if (_isTesting) return;
         Invoke("StartQuestCycle", 1f);
-        Debug.Log("subtitle görevi ayarlancak");
     }
 
     private void StartQuestCycle()
     {
-        //_taskManager.SetStartQuest();
+        _taskManager.SetStartQuest(_firstQuest);
     }
 
     private void ChangeGameState(GameState newState)
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
             case GameState.PlayState:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                EventBus.InputEvents.TriggerActionMapChange(Inputs.ActionMap.Player);
                 break;
 
             case GameState.PauseState:

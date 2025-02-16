@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationDuration: 0.5
-  _isCinematic: 0
-  doorTask: {fileID: 11400000, guid: cce29eb5ad2a5164cb7893fa3db0e86e, type: 2}
+  _openSound: {fileID: 8300000, guid: a9d8ef6c0eb88884b8d2b43894f1b347, type: 3}
+  _closeSound: {fileID: 8300000, guid: 36589b8678c17134283857edafce1891, type: 3}
 --- !u!41 &2744732887357778599
 OcclusionPortal:
   m_ObjectHideFlags: 0

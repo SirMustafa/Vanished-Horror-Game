@@ -380,7 +380,7 @@
                     "type": "Value",
                     "id": "d57b3fe2-9dea-4283-b882-9d966034769f",
                     "expectedControlType": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=10,y=10)",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -388,6 +388,15 @@
                     "name": "ExitCamera",
                     "type": "Button",
                     "id": "c3e54f41-f31a-4418-812c-3c7a5bdccbe8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LMB",
+                    "type": "Button",
+                    "id": "436cb171-1c12-4f00-a1a5-ad50897d38f0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -436,6 +445,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ExitCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f11e2df-0396-46e3-94c1-9c6758dfb099",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LMB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

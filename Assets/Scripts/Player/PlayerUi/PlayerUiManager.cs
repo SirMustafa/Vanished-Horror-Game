@@ -91,8 +91,8 @@ public class PlayerUiManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void OptionsPanel()
+    public void BtnSound(AudioClip btnSfx)
     {
-        Application.Quit();
+        AudioManager.AudioInstance.PlaySfx(btnSfx);
     }
 }
