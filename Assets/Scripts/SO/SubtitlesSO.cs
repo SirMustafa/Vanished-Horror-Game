@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Line")]
+[System.Serializable]
+public class DialogueLine
+{
+    public List<string> lines = new List<string>();
+    public Sprite speakerSprite;
+    public AudioClip speakerAudio;
+}
+
+[CreateAssetMenu(fileName = "NewDialogue")]
 public class SubtitlesSO : ScriptableObject
 {
-    public Sprite narratorsSprite;
-    public AudioClip narratorsClip;
-    public string[] lines;
+    public List<DialogueLine> dialogueLines;
 }

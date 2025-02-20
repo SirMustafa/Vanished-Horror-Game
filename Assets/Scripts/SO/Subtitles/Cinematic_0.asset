@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d601ac414dfb64a4b87f61ce92324366, type: 3}
   m_Name: Cinematic_0
   m_EditorClassIdentifier: 
-  narratorsSprite: {fileID: 21300000, guid: 18f63f907634c8e48852c9f88e63c698, type: 3}
-  narratorsClip: {fileID: 8300000, guid: 28fd39167ffc4ac479293585fe087c0d, type: 3}
-  lines:
-  - "I\u2019ve been traveling aboard this ship for 20 years. Heading toward the edge
-    of the universe. I was chosen for this mission\u2014to reach where no one has
-    gone before."
-  - "In the early years, there was hope. But now... there\u2019s only silence. Nothing
-    should ever feel this... empty."
-  - "But there\u2019s something here. I can feel it. And if this message reaches
-    anyone... know that..."
+  dialogueLines:
+  - lines:
+    - " I\u2019ve been traveling aboard this ship for 20 years. Heading toward  the
+      edge of the universe. I was chosen for this mission\u2014to reach  where no
+      one has gone before. In the early years, there was hope."
+    - "But now... there\u2019s only silence. Nothing should ever feel this... empty. 
+      But there\u2019s something here. I can feel it. And if this message reaches 
+      anyone... know that..."
+    speakerSprite: {fileID: 21300000, guid: 18f63f907634c8e48852c9f88e63c698, type: 3}
+    speakerAudio: {fileID: 8300000, guid: 28fd39167ffc4ac479293585fe087c0d, type: 3}

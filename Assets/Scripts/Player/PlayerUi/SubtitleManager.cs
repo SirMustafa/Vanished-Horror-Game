@@ -14,33 +14,18 @@ public class SubtitleManager : MonoBehaviour
     [SerializeField] UnityEvent OnSubtitleEndEvent;
     [SerializeField] float textSpeed;
 
-    private AudioClip narratorsAudio;
-    private SubtitlesSO _currentLine;
+    private SubtitlesSO _currentDialogue;
     private int _index;
-    private float _duration;
     private bool _isTextFinished;
-    private bool _isAudioFinished;
 
-    public void CallNextLine()
-    {
-        if (_subtitleTxt.text == _currentLine.lines[_index])
-        {
-            NextLine();
-        }
-        else
-        {
-            StopAllCoroutines();
-            _subtitleTxt.text = _currentLine.lines[_index];
-        }
-    }
-
-    public void SetAndStart(SubtitlesSO myLines)
+    public void SetAndStart(SubtitlesSO dialogue)
     {
         _subtitleTxt.text = "";
-        _currentLine = myLines;
-        _imageComponent.sprite = myLines.narratorsSprite;
-        narratorsAudio = myLines.narratorsClip;
+        _currentDialogue = dialogue;
+        _isTextFinished = false;
+        _index = 0;
 
+        UpdateSpeakerData();
         StartDialogue();
     }
 
@@ -51,24 +36,35 @@ public class SubtitleManager : MonoBehaviour
 
     private void StartDialogue()
     {
-        _index = 0;
-        _subtitleTxt.text = "";
-        _isTextFinished = false;
-        _isAudioFinished = false;
+        AudioManager.AudioInstance.PlaySubtitle(_currentDialogue.dialogueLines[_index].speakerAudio);
+        StartCoroutine(TypeLine());  
+    }
 
-        AudioManager.AudioInstance.PlaySubtitle(narratorsAudio);
-        _duration = narratorsAudio.length;
+    private void CallNextLine()
+    {
+        //if (_subtitleTxt.text == _currentDialogue.dialogueLines[_index].line)
+        //{
+        //    NextLine();
+        //}
+        //else
+        //{
+        //    StopAllCoroutines();
+        //    _subtitleTxt.text = _currentDialogue.dialogueLines[_index].line;
+        //}
+    }
 
-        StartCoroutine(TypeLine());
-        StartCoroutine(WaitForAudioToEnd());
+    private void UpdateSpeakerData()
+    {
+        _imageComponent.sprite = _currentDialogue.dialogueLines[_index].speakerSprite;
     }
 
     private void NextLine()
     {
-        if (_index < _currentLine.lines.Length - 1)
+        if (_index < _currentDialogue.dialogueLines.Count - 1)
         {
             _index++;
             _subtitleTxt.text = "";
+            UpdateSpeakerData();
             StartCoroutine(TypeLine());
         }
         else
@@ -80,25 +76,19 @@ public class SubtitleManager : MonoBehaviour
 
     private IEnumerator TypeLine()
     {
-        foreach (char c in _currentLine.lines[_index])
-        {
-            _subtitleTxt.text += c;
+       // string line = _currentDialogue.dialogueLines[_index].line;
+       // _subtitleTxt.text = "";
+       // foreach (char c in line)
+       // {
+       //     _subtitleTxt.text += c;
             yield return new WaitForSeconds(textSpeed);
-        }
-
-        NextLine();
-    }
-
-    private IEnumerator WaitForAudioToEnd()
-    {
-        yield return new WaitForSeconds(_duration);
-        _isAudioFinished = true;
-        StartCoroutine(CheckCompletion());
+       // }
+       // NextLine();
     }
 
     private IEnumerator CheckCompletion()
     {
-        if (_isTextFinished && _isAudioFinished)
+        if (_isTextFinished)
         {
             yield return null;
             OnSubtitleEndEvent?.Invoke();

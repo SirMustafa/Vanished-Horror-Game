@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     {
         SubtitleState,
         PlayState,
-        TaskState,
         CinematicState,
         PauseState,
         OnCameraState,
@@ -28,7 +27,6 @@ public class GameManager : MonoBehaviour
     {
         { GameState.SubtitleState, PlayerUiManager.UiPanels.SubtitlePanel },
         { GameState.PlayState, PlayerUiManager.UiPanels.GamePlayPanel },
-        { GameState.TaskState, PlayerUiManager.UiPanels.TaskPanel },
         { GameState.CinematicState, PlayerUiManager.UiPanels.CinematicPanel },
         { GameState.PauseState, PlayerUiManager.UiPanels.PausePanel },
         { GameState.OnCameraState, PlayerUiManager.UiPanels.OnCameraPanel },
@@ -55,12 +53,7 @@ public class GameManager : MonoBehaviour
     {
         ChangeGameState(GameState.PlayState);
         if (_isTesting) return;
-        Invoke("StartQuestCycle", 1f);
-    }
-
-    private void StartQuestCycle()
-    {
-        _taskManager.StartMainQuest(_firstQuest);
+        _taskManager.StartQuest();
     }
 
     private void ChangeGameState(GameState newState)
@@ -84,11 +77,6 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.PauseState:
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                break;
-
-            case GameState.TaskState:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;

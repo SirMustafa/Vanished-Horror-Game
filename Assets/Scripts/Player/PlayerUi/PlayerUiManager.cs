@@ -10,14 +10,12 @@ public class PlayerUiManager : MonoBehaviour
     [SerializeField] SubtitleManager _subtitleManager;
     [SerializeField] GameObject _interractSymbol;
     [SerializeField] GameObject _corshair;
-
     int _panelsCount;
 
     public enum UiPanels
     {
         SubtitlePanel,
         GamePlayPanel,
-        TaskPanel,
         CinematicPanel,
         PausePanel,
         OnCameraPanel,
@@ -25,22 +23,9 @@ public class PlayerUiManager : MonoBehaviour
     }
     public UiPanels CurrentPanel { get; private set; } = UiPanels.OnChairPanel;
 
-    private void OnEnable()
-    {
-        EventBus.InteractionEvents.OnLeftMouseClick += CheckLeftMouseInput;
-    }
-
     private void Start()
     {
         _panelsCount = Panels.Count;
-    }
-
-    private void CheckLeftMouseInput()
-    {
-        if (CurrentPanel == UiPanels.SubtitlePanel)
-        {
-            _subtitleManager.CallNextLine();
-        }
     }
 
     public void ShowInteractSymbol(bool isInterracting)

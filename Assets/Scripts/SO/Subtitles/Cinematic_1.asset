@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d601ac414dfb64a4b87f61ce92324366, type: 3}
   m_Name: Cinematic_1
   m_EditorClassIdentifier: 
-  narratorsSprite: {fileID: 21300000, guid: f8bbb3acd63c04449b7cac9e44da171a, type: 3}
-  narratorsClip: {fileID: 8300000, guid: 3b250bfd26afc8744aab19f834b559d2, type: 3}
-  lines:
-  - 'Your mission is this: Cross the border of the universe.'
+  dialogueLines:
+  - lines:
+    - 'Your mission is this: Cross the border of the universe.'
+    speakerSprite: {fileID: 21300000, guid: f8bbb3acd63c04449b7cac9e44da171a, type: 3}
+    speakerAudio: {fileID: 8300000, guid: c5fcd4ec464539744906f14b0b136abc, type: 3}

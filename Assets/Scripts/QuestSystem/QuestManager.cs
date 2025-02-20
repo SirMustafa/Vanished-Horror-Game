@@ -6,74 +6,64 @@ using Zenject;
 
 public class QuestManager : MonoBehaviour
 {
+    [SerializeField] private List<QuestInfoSO> questList = new List<QuestInfoSO>();
+
     private PlayerUiManager _playerUi;
-
-    private Queue<QuestInfoSO> mainQuestQueue = new();
-    private List<QuestInfoSO> sideQuests = new();
-
-    private QuestInfoSO currentMainQuest;
+    private QuestInfoSO currentQuest;
 
     [Inject]
-    void Setup(PlayerUiManager playerUi)
+    public void Setup(PlayerUiManager playerUi)
     {
         _playerUi = playerUi;
     }
 
-    public void StartMainQuest(QuestInfoSO newMainQuest)
+    public void StartQuest()
     {
-        mainQuestQueue.Enqueue(newMainQuest);
-        if (currentMainQuest is null)
-        {
-            StartNextMainQuest();
-        }
+        StartCoroutine(StartQuestRoutine());
     }
 
-    private void StartNextMainQuest()
+    private IEnumerator StartQuestRoutine()
     {
-        if (mainQuestQueue.Count > 0)
+        yield return new WaitForSeconds(1f);
+
+        if (questList.Count > 0)
         {
-            currentMainQuest = mainQuestQueue.Dequeue();
-            ActivateQuest(currentMainQuest);
+            currentQuest = questList[0];
+            _playerUi.SetMissionText(currentQuest.TaskName);
+
+            if (currentQuest.subtitles is not null)
+            {
+                EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.SubtitleState);
+                _playerUi.ShowSubtitle(currentQuest.subtitles);
+            }
+            else
+            {
+                EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.PlayState);
+            }
+            currentQuest.OnTaskCompleted += QuestComplete;
+            Debug.Log($"Görev '{currentQuest.TaskName}' baþlatýldý.");
         }
         else
         {
-            currentMainQuest = null;
+            Debug.Log("Tüm görevler tamamlandý!");
+            _playerUi.SetMissionText("Tüm görevler tamamlandý!");
         }
     }
-
-    public void StartSideQuest(QuestInfoSO sideQuest)
+    public void CheckQuestType()
     {
-        if (!sideQuests.Contains(sideQuest))
+        if (currentQuest.isJustSubtitle)
         {
-            sideQuests.Add(sideQuest);
-            ActivateQuest(sideQuest);
+            QuestComplete();
         }
     }
-
-    private void ActivateQuest(QuestInfoSO quest)
+    private void QuestComplete()
     {
-        if (quest.subtitles is not null)
+        if (currentQuest != null)
         {
-            EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.SubtitleState);
-            _playerUi.ShowSubtitle(quest.subtitles);
-            _playerUi.SetMissionText(quest.TaskName);
-        }
-
-        quest.OnTaskCompleted += () => CompleteQuest(quest);
-    }
-
-    private void CompleteQuest(QuestInfoSO quest)
-    {
-        quest.OnTaskCompleted -= () => CompleteQuest(quest);
-        quest.isCompleted = true;
-
-        if (quest == currentMainQuest)
-        {
-            StartNextMainQuest();
-        }
-        else if (sideQuests.Contains(quest))
-        {
-            sideQuests.Remove(quest);
+            currentQuest.OnTaskCompleted -= QuestComplete;
+            Debug.Log($"Görev '{currentQuest.TaskName}' tamamlandý.");
+            questList.RemoveAt(0);
+            StartQuest();
         }
     }
 }
