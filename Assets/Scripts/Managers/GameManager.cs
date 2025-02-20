@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void StartQuestCycle()
     {
-        _taskManager.SetStartQuest(_firstQuest);
+        _taskManager.StartMainQuest(_firstQuest);
     }
 
     private void ChangeGameState(GameState newState)

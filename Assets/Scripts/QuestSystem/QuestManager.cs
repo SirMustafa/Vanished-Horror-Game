@@ -7,49 +7,73 @@ using Zenject;
 public class QuestManager : MonoBehaviour
 {
     private PlayerUiManager _playerUi;
-    private QuestInfoSO currentTask;
+
+    private Queue<QuestInfoSO> mainQuestQueue = new();
+    private List<QuestInfoSO> sideQuests = new();
+
+    private QuestInfoSO currentMainQuest;
 
     [Inject]
-    void setup(PlayerUiManager playerui)
+    void Setup(PlayerUiManager playerUi)
     {
-        _playerUi = playerui;
+        _playerUi = playerUi;
     }
 
-    public void SetStartQuest(QuestInfoSO currentQuest)
+    public void StartMainQuest(QuestInfoSO newMainQuest)
     {
-        currentTask = currentQuest;
-        if (currentTask.subtitles is not null)
+        mainQuestQueue.Enqueue(newMainQuest);
+        if (currentMainQuest is null)
+        {
+            StartNextMainQuest();
+        }
+    }
+
+    private void StartNextMainQuest()
+    {
+        if (mainQuestQueue.Count > 0)
+        {
+            currentMainQuest = mainQuestQueue.Dequeue();
+            ActivateQuest(currentMainQuest);
+        }
+        else
+        {
+            currentMainQuest = null;
+        }
+    }
+
+    public void StartSideQuest(QuestInfoSO sideQuest)
+    {
+        if (!sideQuests.Contains(sideQuest))
+        {
+            sideQuests.Add(sideQuest);
+            ActivateQuest(sideQuest);
+        }
+    }
+
+    private void ActivateQuest(QuestInfoSO quest)
+    {
+        if (quest.subtitles is not null)
         {
             EventBus.InputEvents.TriggerGameStateChange(GameManager.GameState.SubtitleState);
-
-            _playerUi.ShowSubtitle(currentTask.subtitles);
-            _playerUi.SetMissionText(currentTask.TaskName);
+            _playerUi.ShowSubtitle(quest.subtitles);
+            _playerUi.SetMissionText(quest.TaskName);
         }
-        currentTask.OnTaskCompleted += CompleteCurrentQuest;
-        Debug.Log("abon");
+
+        quest.OnTaskCompleted += () => CompleteQuest(quest);
     }
 
-    private void CompleteCurrentQuest()
+    private void CompleteQuest(QuestInfoSO quest)
     {
-        currentTask.OnTaskCompleted -= CompleteCurrentQuest;
-        Debug.Log("end");
+        quest.OnTaskCompleted -= () => CompleteQuest(quest);
+        quest.isCompleted = true;
 
-        //tasksQue.RemoveAt(0);
-        //
-        //if (tasksQue.Count > 0)
-        //{
-        //    StartCoroutine(waitAlitte());
-        //}
-        //else
-        //{
-        //    Debug.Log("Tüm görevler tamamlandý!");
-        //}
-    }
-    private void CheckQuest()
-    {
-        if (currentTask.isJustSubtitle)
+        if (quest == currentMainQuest)
         {
-            CompleteCurrentQuest();
+            StartNextMainQuest();
+        }
+        else if (sideQuests.Contains(quest))
+        {
+            sideQuests.Remove(quest);
         }
     }
 }

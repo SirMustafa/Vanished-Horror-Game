@@ -6,6 +6,7 @@ using UnityEngine;
 public class Doors : MonoBehaviour, IInteractable
 {
     [SerializeField] private float _rotationDuration = 0.5f;
+    [SerializeField] bool _isLocked = false;
     [SerializeField] private AudioClip _openSound;
     [SerializeField] private AudioClip _closeSound;
     private OcclusionPortal _occlusionPortal;
@@ -38,7 +39,7 @@ public class Doors : MonoBehaviour, IInteractable
 
     public void MyInterract()
     {
-        if (_isMoving) return;
+        if (_isMoving || _isLocked) return;
 
         _isMoving = true;
 
